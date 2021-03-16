@@ -1,2 +1,2 @@
-# Lux_Lin.github.io
+# glayin.github.io
 my personal blog

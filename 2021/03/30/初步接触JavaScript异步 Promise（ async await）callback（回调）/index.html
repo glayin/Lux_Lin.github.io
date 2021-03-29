@@ -23,28 +23,35 @@
     var NexT = window.NexT || {};
     var CONFIG = {"hostname":"glayin.github.io","root":"/","images":"/images","scheme":"Muse","version":"8.2.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
   </script>
-<meta property="og:type" content="website">
-<meta property="og:title" content="Lux&#39;s blog">
-<meta property="og:url" content="https://glayin.github.io/index.html/index.html">
+<meta name="description" content="异步编程的概念学习到小程序缓存机制与异步API时突然对异步、Promise很茫然，电气出身的我脑子里只有异步电机之类的，停下来开始搜索。 MDN文档 在日常web访问时，有时候会遇到光圈，意味着要等待着某些操作完成，对操作系统和java接触过的同学估计会想到多线程来改善，很遗憾JavaScript是单线程的，只能通过异步代码使程序一次做多件事情来实现。JavaScript异步编程有两种风格，老派的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="初步接触JavaScript异步">
+<meta property="og:url" content="https://glayin.github.io/2021/03/30/%E5%88%9D%E6%AD%A5%E6%8E%A5%E8%A7%A6JavaScript%E5%BC%82%E6%AD%A5%20Promise%EF%BC%88%20async%20await%EF%BC%89callback%EF%BC%88%E5%9B%9E%E8%B0%83%EF%BC%89/index.html">
 <meta property="og:site_name" content="Lux&#39;s blog">
+<meta property="og:description" content="异步编程的概念学习到小程序缓存机制与异步API时突然对异步、Promise很茫然，电气出身的我脑子里只有异步电机之类的，停下来开始搜索。 MDN文档 在日常web访问时，有时候会遇到光圈，意味着要等待着某些操作完成，对操作系统和java接触过的同学估计会想到多线程来改善，很遗憾JavaScript是单线程的，只能通过异步代码使程序一次做多件事情来实现。JavaScript异步编程有两种风格，老派的">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2021033001470278.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NjcyODA2OA==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210330021713954.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NjcyODA2OA==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="article:published_time" content="2021-03-29T18:35:22.000Z">
+<meta property="article:modified_time" content="2021-03-29T18:36:41.643Z">
 <meta property="article:author" content="Lux Lin">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/2021033001470278.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NjcyODA2OA==,size_16,color_FFFFFF,t_70#pic_center">
 
 
-<link rel="canonical" href="https://glayin.github.io/index.html/">
+<link rel="canonical" href="https://glayin.github.io/2021/03/30/%E5%88%9D%E6%AD%A5%E6%8E%A5%E8%A7%A6JavaScript%E5%BC%82%E6%AD%A5%20Promise%EF%BC%88%20async%20await%EF%BC%89callback%EF%BC%88%E5%9B%9E%E8%B0%83%EF%BC%89/">
 
 
 <script class="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : true,
-    isPost : false,
+    isHome : false,
+    isPost : true,
     lang   : 'en'
   };
 </script>
-<title>Lux's blog</title>
+<title>初步接触JavaScript异步 | Lux's blog</title>
   
 
 
@@ -139,7 +146,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           Table of Contents
@@ -152,6 +159,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="nav-number">1.</span> <span class="nav-text">异步编程的概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%82%E6%AD%A5%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0"><span class="nav-number">2.</span> <span class="nav-text">异步回调函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Promise-%E4%B8%8E-async-await%E7%9A%84%E7%94%A8%E6%B3%95%E7%AE%80%E4%BB%8B"><span class="nav-number">3.</span> <span class="nav-text">Promise 与 async&#x2F;await的用法简介</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -193,16 +201,17 @@
 </noscript>
 
 
-    <div class="main-inner index posts-expand">
+    <div class="main-inner post posts-expand">
 
-    
+
+  
 
 
 <div class="post-block">
   
   
 
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
     <link itemprop="mainEntityOfPage" href="https://glayin.github.io/2021/03/30/%E5%88%9D%E6%AD%A5%E6%8E%A5%E8%A7%A6JavaScript%E5%BC%82%E6%AD%A5%20Promise%EF%BC%88%20async%20await%EF%BC%89callback%EF%BC%88%E5%9B%9E%E8%B0%83%EF%BC%89/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -215,9 +224,9 @@
       <meta itemprop="name" content="Lux's blog">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/03/30/%E5%88%9D%E6%AD%A5%E6%8E%A5%E8%A7%A6JavaScript%E5%BC%82%E6%AD%A5%20Promise%EF%BC%88%20async%20await%EF%BC%89callback%EF%BC%88%E5%9B%9E%E8%B0%83%EF%BC%89/" class="post-title-link" itemprop="url">初步接触JavaScript异步</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          初步接触JavaScript异步
+        </h1>
 
         <div class="post-meta-container">
           <div class="post-meta">
@@ -241,7 +250,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="异步编程的概念"><a href="#异步编程的概念" class="headerlink" title="异步编程的概念"></a>异步编程的概念</h2><p>学习到小程序缓存机制与异步API时突然对异步、Promise很茫然，电气出身的我脑子里只有异步电机之类的，停下来开始搜索。</p>
+        <h2 id="异步编程的概念"><a href="#异步编程的概念" class="headerlink" title="异步编程的概念"></a>异步编程的概念</h2><p>学习到小程序缓存机制与异步API时突然对异步、Promise很茫然，电气出身的我脑子里只有异步电机之类的，停下来开始搜索。</p>
 <p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Concepts">MDN文档</a></p>
 <p>在日常web访问时，有时候会遇到光圈，意味着要等待着某些操作完成，对操作系统和java接触过的同学估计会想到多线程来改善，很遗憾JavaScript是单线程的，只能通过异步代码使程序一次做多件事情来实现。<br>JavaScript异步编程有两种风格，老派的异步callbacks（回调），新派的promise。</p>
 <h2 id="异步回调函数"><a href="#异步回调函数" class="headerlink" title="异步回调函数"></a>异步回调函数</h2><p>要注意回调不等同于异步，也有回调函数是同步的。区别在于同步的回调函数无需等待任何事情，立即执行。</p>
@@ -270,7 +279,6 @@
 <p>当且仅当async修饰函数后，函数内部可以使用await</p>
 <p>await会拿到resolve结果，是then函数的语法糖。</p>
 
-      
     </div>
 
     
@@ -278,212 +286,22 @@
     
 
     <footer class="post-footer">
-        <div class="post-eof"></div>
-      
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/03/21/miniprogram_learning_components/" rel="prev" title="miniprogram components">
+                  <i class="fa fa-chevron-left"></i> miniprogram components
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
     </footer>
   </article>
 </div>
 
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://glayin.github.io/2021/03/21/miniprogram_learning_components/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Lux Lin">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Lux's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/03/21/miniprogram_learning_components/" class="post-title-link" itemprop="url">miniprogram components</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 2021-03-21 11:55:22 / Modified: 12:12:44" itemprop="dateCreated datePublished" datetime="2021-03-21T11:55:22+08:00">2021-03-21</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>Step1： import the LinUI library<br><code>npm init ; npm install linUi </code><br><img src =" https://img1.mukewang.com/szimg/5fd43ddf0001236e19201080.jpg"></p>
-<p>if you meet error like “verb npm-session f173cfd1e0947ca0”</p>
-<p>you may try<br><code>npm config set registry http://registry.npm.taobao.org</code><br>then import LinUI again </p>
-<p>Step2: (important) construct npm</p>
-<p>click the tools on the top bar, find the “construct npm” choice</p>
-<img src = "https://img1.sycdn.imooc.com/szimg/603dfe710001d07719201080-156-88.jpg" >
-
-<p>Step3: register the component in the json<br>the component name can be named by developer<br>ex:<br><code>&quot;l-avatar”:“ /minipaogarm_npm/lin-ui/avatar/index”</code></p>
-<img src ="https://img1.sycdn.imooc.com/szimg/5fa2bc400001037c19201080.jpg" >
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://glayin.github.io/2021/03/21/miniprogram2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Lux Lin">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Lux's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/03/21/miniprogram2/" class="post-title-link" itemprop="url">Untitled</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2021-03-21 11:53:16" itemprop="dateCreated datePublished" datetime="2021-03-21T11:53:16+08:00">2021-03-21</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://glayin.github.io/2021/03/19/first/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Lux Lin">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Lux's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/03/19/first/" class="post-title-link" itemprop="url">first page</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 2021-03-19 16:01:21 / Modified: 16:33:43" itemprop="dateCreated datePublished" datetime="2021-03-19T16:01:21+08:00">2021-03-19</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>Today, Mar 19th, I finished this first page..</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
 
 
 

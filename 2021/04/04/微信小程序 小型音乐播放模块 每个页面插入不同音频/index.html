@@ -23,28 +23,34 @@
     var NexT = window.NexT || {};
     var CONFIG = {"hostname":"glayin.github.io","root":"/","images":"/images","scheme":"Muse","version":"8.2.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
   </script>
-<meta property="og:type" content="website">
+<meta name="description" content="调用小程序音乐播放APIBackgroundAudioManagerBackgroundAudioManager实例，可以通过wx.getBackgroundAudioManager获取。 string  str &#x2F; string title 两个必须 js文件里注册一个播放事件  12345onMusic()&amp;#123;	const mgr &#x3D; wx.getBackgroundAudi">
+<meta property="og:type" content="article">
 <meta property="og:title" content="Lux&#39;s blog">
-<meta property="og:url" content="https://glayin.github.io/index.html/index.html">
+<meta property="og:url" content="https://glayin.github.io/2021/04/04/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%20%E5%B0%8F%E5%9E%8B%E9%9F%B3%E4%B9%90%E6%92%AD%E6%94%BE%E6%A8%A1%E5%9D%97%20%E6%AF%8F%E4%B8%AA%E9%A1%B5%E9%9D%A2%E6%8F%92%E5%85%A5%E4%B8%8D%E5%90%8C%E9%9F%B3%E9%A2%91/index.html">
 <meta property="og:site_name" content="Lux&#39;s blog">
+<meta property="og:description" content="调用小程序音乐播放APIBackgroundAudioManagerBackgroundAudioManager实例，可以通过wx.getBackgroundAudioManager获取。 string  str &#x2F; string title 两个必须 js文件里注册一个播放事件  12345onMusic()&amp;#123;	const mgr &#x3D; wx.getBackgroundAudi">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/img_convert/46710eff8fbf9ce7c96857f6ed6e6bab.png#pic_center">
+<meta property="article:published_time" content="2021-04-03T17:12:37.697Z">
+<meta property="article:modified_time" content="2021-04-03T17:12:39.014Z">
 <meta property="article:author" content="Lux Lin">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/img_convert/46710eff8fbf9ce7c96857f6ed6e6bab.png#pic_center">
 
 
-<link rel="canonical" href="https://glayin.github.io/index.html/">
+<link rel="canonical" href="https://glayin.github.io/2021/04/04/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%20%E5%B0%8F%E5%9E%8B%E9%9F%B3%E4%B9%90%E6%92%AD%E6%94%BE%E6%A8%A1%E5%9D%97%20%E6%AF%8F%E4%B8%AA%E9%A1%B5%E9%9D%A2%E6%8F%92%E5%85%A5%E4%B8%8D%E5%90%8C%E9%9F%B3%E9%A2%91/">
 
 
 <script class="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : true,
-    isPost : false,
+    isHome : false,
+    isPost : true,
     lang   : 'en'
   };
 </script>
-<title>Lux's blog</title>
+<title> | Lux's blog</title>
   
 
 
@@ -139,7 +145,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           Table of Contents
@@ -152,6 +158,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B0%83%E7%94%A8%E5%B0%8F%E7%A8%8B%E5%BA%8F%E9%9F%B3%E4%B9%90%E6%92%AD%E6%94%BEAPI"><span class="nav-number">1.</span> <span class="nav-text">调用小程序音乐播放API</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AF%8F%E4%B8%AA%E9%A1%B5%E9%9D%A2%E6%92%AD%E6%94%BE%E5%AE%9E%E7%8E%B0%E6%92%AD%E6%94%BE%E6%9A%82%E5%81%9C"><span class="nav-number">2.</span> <span class="nav-text">每个页面播放实现播放暂停</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9F%B3%E4%B9%90%E9%9D%A2%E6%9D%BF%E8%83%BD%E5%A4%9F%E4%B8%8E%E5%9B%BE%E6%A0%87%E7%8A%B6%E6%80%81%E5%90%8C%E6%AD%A5"><span class="nav-number">3.</span> <span class="nav-text">音乐面板能够与图标状态同步</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F%E8%A7%A3%E5%86%B3%E9%9F%B3%E4%B9%90%E6%92%AD%E6%94%BE%E7%8A%B6%E6%80%81%E5%88%9D%E5%A7%8B%E5%8C%96%E4%B8%8D%E6%AD%A3%E7%A1%AE%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-number">4.</span> <span class="nav-text">全局变量解决音乐播放状态初始化不正确的问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%A9%E6%AF%8F%E7%AF%87%E6%96%87%E7%AB%A0%E9%9F%B3%E4%B9%90%E7%8B%AC%E7%AB%8B%E6%98%BE%E7%A4%BA%E7%8A%B6%E6%80%81"><span class="nav-number">5.</span> <span class="nav-text">让每篇文章音乐独立显示状态</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -193,16 +200,17 @@
 </noscript>
 
 
-    <div class="main-inner index posts-expand">
+    <div class="main-inner post posts-expand">
 
-    
+
+  
 
 
 <div class="post-block">
   
   
 
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
     <link itemprop="mainEntityOfPage" href="https://glayin.github.io/2021/04/04/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%20%E5%B0%8F%E5%9E%8B%E9%9F%B3%E4%B9%90%E6%92%AD%E6%94%BE%E6%A8%A1%E5%9D%97%20%E6%AF%8F%E4%B8%AA%E9%A1%B5%E9%9D%A2%E6%8F%92%E5%85%A5%E4%B8%8D%E5%90%8C%E9%9F%B3%E9%A2%91/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -215,9 +223,9 @@
       <meta itemprop="name" content="Lux's blog">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/04/04/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%20%E5%B0%8F%E5%9E%8B%E9%9F%B3%E4%B9%90%E6%92%AD%E6%94%BE%E6%A8%A1%E5%9D%97%20%E6%AF%8F%E4%B8%AA%E9%A1%B5%E9%9D%A2%E6%8F%92%E5%85%A5%E4%B8%8D%E5%90%8C%E9%9F%B3%E9%A2%91/" class="post-title-link" itemprop="url">Untitled</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          
+        </h1>
 
         <div class="post-meta-container">
           <div class="post-meta">
@@ -241,7 +249,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="调用小程序音乐播放API"><a href="#调用小程序音乐播放API" class="headerlink" title="调用小程序音乐播放API"></a>调用小程序音乐播放API</h2><p><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/api/media/background-audio/BackgroundAudioManager.html">BackgroundAudioManager</a><br>BackgroundAudioManager实例，可以通过wx.getBackgroundAudioManager获取。</p>
+        <h2 id="调用小程序音乐播放API"><a href="#调用小程序音乐播放API" class="headerlink" title="调用小程序音乐播放API"></a>调用小程序音乐播放API</h2><p><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/api/media/background-audio/BackgroundAudioManager.html">BackgroundAudioManager</a><br>BackgroundAudioManager实例，可以通过wx.getBackgroundAudioManager获取。</p>
 <p>string  str / string title 两个必须</p>
 <p>js文件里注册一个播放事件 </p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">onMusic()&#123;</span><br><span class="line">	const mgr &#x3D; wx.getBackgroundAudioManager()</span><br><span class="line">	mgr.src &#x3D; postList[0].music.url</span><br><span class="line">	mgr.title &#x3D; postList[0].music.title</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -267,7 +275,6 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line">onLoad: function (options) &#123;</span><br><span class="line">   console.log(options)</span><br><span class="line">   this.data._pid &#x3D; options.pid</span><br><span class="line">   const postsCollected &#x3D; wx.getStorageSync(&#39;posts_collected&#39;)</span><br><span class="line">   this.data._postCollected &#x3D; postsCollected</span><br><span class="line">   const postData &#x3D; postList[options.pid]</span><br><span class="line">   const collected &#x3D; postsCollected[this.data._pid]</span><br><span class="line">   console.log(collected)</span><br><span class="line">   const mgr &#x3D; wx.getBackgroundAudioManager()</span><br><span class="line">   this.data._mgr &#x3D; mgr</span><br><span class="line">   console.log(postData)</span><br><span class="line">   this.setData(&#123;</span><br><span class="line">     postData,</span><br><span class="line">     collected,</span><br><span class="line">     isPlaying:this.currentMusicIsPlaying()</span><br><span class="line">   &#125;)</span><br><span class="line">   mgr.onPlay(this.onMusicStart)</span><br><span class="line">   mgr.onPause(this.onMusicStop)</span><br><span class="line"> &#125;,</span><br><span class="line"></span><br><span class="line"> currentMusicIsPlaying()&#123;</span><br><span class="line">   if(app.gIsPlayingMusic &amp;&amp; app.gIsPlayingPostId &#x3D;&#x3D;&#x3D; this.data._pid)&#123;</span><br><span class="line">      </span><br><span class="line">       return true</span><br><span class="line">     &#125;</span><br><span class="line">     return false</span><br><span class="line">   &#125;,</span><br><span class="line">   </span><br><span class="line">  </span><br><span class="line"></span><br><span class="line"> onMusicStart(event)&#123;</span><br><span class="line"></span><br><span class="line">     const mgr &#x3D; this.data._mgr</span><br><span class="line">      </span><br><span class="line">     const music &#x3D; postList[this.data._pid].music</span><br><span class="line">     mgr.src &#x3D; music.url</span><br><span class="line">     mgr.title &#x3D; music.title</span><br><span class="line">     mgr.coverImgUrl &#x3D; music.coverImg</span><br><span class="line"></span><br><span class="line">     app.gIsPlayingMusic &#x3D; true</span><br><span class="line">     app.gIsPlayingPostId &#x3D; this.data._pid</span><br><span class="line">     this.setData(&#123;</span><br><span class="line">       isPlaying:true</span><br><span class="line">     &#125;)</span><br><span class="line">   &#x2F;&#x2F;const mgr &#x3D; wx.getBackgroundAudioManager()</span><br><span class="line">   </span><br><span class="line">    </span><br><span class="line">   mgr.onPlay(this.onMusicStart)</span><br><span class="line">   mgr.onPause(this.onMusicStop)</span><br><span class="line"> &#125;, </span><br><span class="line"></span><br><span class="line"> onMusicStop(event)&#123;</span><br><span class="line">   const mgr &#x3D; this.data._mgr</span><br><span class="line">   mgr.pause()</span><br><span class="line">   app.gIsPlayingMusic &#x3D; false</span><br><span class="line">   app.gIsPlayingPostId &#x3D; -1</span><br><span class="line">   this.setData(&#123;</span><br><span class="line">     isPlaying:false</span><br><span class="line">   &#125;)</span><br><span class="line"> &#125;,</span><br></pre></td></tr></table></figure>
 
 
-      
     </div>
 
     
@@ -275,304 +282,22 @@
     
 
     <footer class="post-footer">
-        <div class="post-eof"></div>
-      
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/03/30/%E5%88%9D%E6%AD%A5%E6%8E%A5%E8%A7%A6JavaScript%E5%BC%82%E6%AD%A5%20Promise%EF%BC%88%20async%20await%EF%BC%89callback%EF%BC%88%E5%9B%9E%E8%B0%83%EF%BC%89/" rel="prev" title="初步接触JavaScript异步">
+                  <i class="fa fa-chevron-left"></i> 初步接触JavaScript异步
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
     </footer>
   </article>
 </div>
 
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://glayin.github.io/2021/03/30/%E5%88%9D%E6%AD%A5%E6%8E%A5%E8%A7%A6JavaScript%E5%BC%82%E6%AD%A5%20Promise%EF%BC%88%20async%20await%EF%BC%89callback%EF%BC%88%E5%9B%9E%E8%B0%83%EF%BC%89/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Lux Lin">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Lux's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/03/30/%E5%88%9D%E6%AD%A5%E6%8E%A5%E8%A7%A6JavaScript%E5%BC%82%E6%AD%A5%20Promise%EF%BC%88%20async%20await%EF%BC%89callback%EF%BC%88%E5%9B%9E%E8%B0%83%EF%BC%89/" class="post-title-link" itemprop="url">初步接触JavaScript异步</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 2021-03-30 02:35:22 / Modified: 02:36:41" itemprop="dateCreated datePublished" datetime="2021-03-30T02:35:22+08:00">2021-03-30</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="异步编程的概念"><a href="#异步编程的概念" class="headerlink" title="异步编程的概念"></a>异步编程的概念</h2><p>学习到小程序缓存机制与异步API时突然对异步、Promise很茫然，电气出身的我脑子里只有异步电机之类的，停下来开始搜索。</p>
-<p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Concepts">MDN文档</a></p>
-<p>在日常web访问时，有时候会遇到光圈，意味着要等待着某些操作完成，对操作系统和java接触过的同学估计会想到多线程来改善，很遗憾JavaScript是单线程的，只能通过异步代码使程序一次做多件事情来实现。<br>JavaScript异步编程有两种风格，老派的异步callbacks（回调），新派的promise。</p>
-<h2 id="异步回调函数"><a href="#异步回调函数" class="headerlink" title="异步回调函数"></a>异步回调函数</h2><p>要注意回调不等同于异步，也有回调函数是同步的。区别在于同步的回调函数无需等待任何事情，立即执行。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">const gods &#x3D; [&#39;Apollo&#39;, &#39;Artemis&#39;, &#39;Ares&#39;, &#39;Zeus&#39;];</span><br><span class="line"></span><br><span class="line">gods.forEach(function (eachName, index)&#123;</span><br><span class="line">  console.log(index + &#39;. &#39; + eachName);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>然而异步回调是需要等待的，从而规避类似于加载图片未完成时就执行展示图片的代码导致的显示错误。</p>
-<p>那么问题来了，什么是回调函数？<br>就是把函数作为参数传进另一个函数，它将在父函数完成后执行。</p>
-<p>异步回调：异步回调是在调用将在后台开始执行代码的函数时指定为参数的函数。当后台代码完成运行时，它将调用回调函数以使您知道工作已完成，或者使您知道发生了一些有趣的事情。</p>
-<p>下面展示一个MDN上第一个例子并谈谈我的的通俗理解，有误希望指正。<br><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Learn/JavaScript/Asynchronous/Introducing">异步callbacks</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">btn.addEventListener(&#39;click&#39;, () &#x3D;&gt; &#123;</span><br><span class="line">  alert(&#39;You clicked me!&#39;);</span><br><span class="line"></span><br><span class="line">  let pElem &#x3D; document.createElement(&#39;p&#39;);</span><br><span class="line">  pElem.textContent &#x3D; &#39;This is a newly-added paragraph.&#39;;</span><br><span class="line">  document.body.appendChild(pElem);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>这段代码的功能是点击btn时弹出警示框“You clicked me”。<br>异步回调是 () =&gt; {<br>  alert(‘You clicked me!’);<br>  let pElem = document.createElement(‘p’);<br>  pElem.textContent = ‘This is a newly-added paragraph.’;<br>  document.body.appendChild(pElem);<br>}<br>这个箭头函数，等待前面click完成后执行。</p>
-<h2 id="Promise-与-async-await的用法简介"><a href="#Promise-与-async-await的用法简介" class="headerlink" title="Promise 与 async/await的用法简介"></a>Promise 与 async/await的用法简介</h2><p>首先来推荐大家一个简洁的视频，11分钟。<br><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV12E411975X/?spm_id_from=333.788.b_7265636f5f6c697374.2">Promise与async/await的用法简介</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1QV411a7Hu">面试题 6分钟</a></p>
-<p>本质上，Promise 是一个对象，代表操作的中间状态 —— 正如它的单词含义 ‘承诺’ ，它保证在未来可能返回某种结果。虽然 Promise 并不保证操作在何时完成并返回结果，但是它保证当结果可用时，你的代码能正确处理结果，当结果不可用时，你的代码同样会被执行，来优雅的处理错误。<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Learn/JavaScript/Asynchronous/Promises">from MDN</a></p>
-<p>如何使用Promise <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Using_promises">from MDN</a><br>一个 Promise 对象代表一个在这个 promise 被创建出来时不一定已知的值。它让您能够把异步操作最终的成功返回值或者失败原因和相应的处理程序关联起来。 这样使得异步方法可以像同步方法那样返回值：异步方法并不会立即返回最终的值，而是会返回一个 promise，以便在未来某个时候把值交给使用者。</p>
-<p>一个 Promise 必然处于以下几种状态之一：</p>
-<p>待定（pending）: 初始状态，既没有被兑现，也没有被拒绝。<br>已兑现（fulfilled）: 意味着操作成功完成。<br>已拒绝（rejected）: 意味着操作失败。<br>待定状态的 Promise 对象要么会通过一个值被兑现（fulfilled），要么会通过一个原因（错误）被拒绝（rejected）。当这些情况之一发生时，我们用 promise 的 then 方法排列起来的相关处理程序就会被调用。如果 promise 在一个相应的处理程序被绑定时就已经被兑现或被拒绝了，那么这个处理程序就会被调用，因此在完成异步操作和绑定处理方法之间不会存在竞争状态。</p>
-<p>因为 Promise.prototype.then 和  Promise.prototype.catch 方法返回的是 promise， 所以它们可以被链式调用。</p>
-<p><img src="https://img-blog.csdnimg.cn/2021033001470278.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NjcyODA2OA==,size_16,color_FFFFFF,t_70#pic_center" alt="链式调用"><br>demo1</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">const imagAddress &#x3D; &#39;https:&#x2F;&#x2F;miro.medium.com&#x2F;max&#x2F;9999&#x2F;1*_BIT2ZAtovZX-XDIkysxrQ.png &#39;</span><br><span class="line"></span><br><span class="line">const imgPromise &#x3D; ( url ) &#x3D;&gt; &#123;</span><br><span class="line">		return new Promise((resolve, reject) &#x3D;&gt; &#123;</span><br><span class="line">				const img &#x3D; new Image();</span><br><span class="line">				img.src &#x3D; url;</span><br><span class="line">				img.onload &#x3D; () &#x3D;&gt; &#123;</span><br><span class="line">					resolve( img );</span><br><span class="line">				&#125;;</span><br><span class="line">				img.onerror &#x3D; () &#x3D;&gt; &#123;</span><br><span class="line">					reject(new Error (&#39;图片有误&#39;));</span><br><span class="line">					&#125;;</span><br><span class="line">		&#125;);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">imgPromise( imgAddress )</span><br><span class="line">		.then( img &#x3D;&gt;&#123;</span><br><span class="line">				document.body.appendChild(img);</span><br><span class="line">		&#125;)</span><br><span class="line">		.catch(img &#x3D;&gt; &#123;</span><br><span class="line">				doucument.body.innerHTML &#x3D; err;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>Promise 最大的好处是解决了回调地狱问题，而且因为有了resolve和reject可以进行异步处理得知任务进度</p>
-<p>demo2</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">new Promise((resolve, reject) &#x3D;&gt; &#123;</span><br><span class="line">setTimeout(function()&#123;reject(123)&#125;, 1000)</span><br><span class="line">&#125;).then(res &#x3D;&gt; console.log(res)).catch(e &#x3D;&gt; console.log(e))</span><br></pre></td></tr></table></figure>
-<p><img src="https://img-blog.csdnimg.cn/20210330021713954.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NjcyODA2OA==,size_16,color_FFFFFF,t_70#pic_center" alt="async await"><br><em>async await语法糖</em></p>
-<p>当且仅当async修饰函数后，函数内部可以使用await</p>
-<p>await会拿到resolve结果，是then函数的语法糖。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://glayin.github.io/2021/03/21/miniprogram_learning_components/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Lux Lin">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Lux's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/03/21/miniprogram_learning_components/" class="post-title-link" itemprop="url">miniprogram components</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 2021-03-21 11:55:22 / Modified: 12:12:44" itemprop="dateCreated datePublished" datetime="2021-03-21T11:55:22+08:00">2021-03-21</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>Step1： import the LinUI library<br><code>npm init ; npm install linUi </code><br><img src =" https://img1.mukewang.com/szimg/5fd43ddf0001236e19201080.jpg"></p>
-<p>if you meet error like “verb npm-session f173cfd1e0947ca0”</p>
-<p>you may try<br><code>npm config set registry http://registry.npm.taobao.org</code><br>then import LinUI again </p>
-<p>Step2: (important) construct npm</p>
-<p>click the tools on the top bar, find the “construct npm” choice</p>
-<img src = "https://img1.sycdn.imooc.com/szimg/603dfe710001d07719201080-156-88.jpg" >
-
-<p>Step3: register the component in the json<br>the component name can be named by developer<br>ex:<br><code>&quot;l-avatar”:“ /minipaogarm_npm/lin-ui/avatar/index”</code></p>
-<img src ="https://img1.sycdn.imooc.com/szimg/5fa2bc400001037c19201080.jpg" >
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://glayin.github.io/2021/03/21/miniprogram2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Lux Lin">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Lux's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/03/21/miniprogram2/" class="post-title-link" itemprop="url">Untitled</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2021-03-21 11:53:16" itemprop="dateCreated datePublished" datetime="2021-03-21T11:53:16+08:00">2021-03-21</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://glayin.github.io/2021/03/19/first/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Lux Lin">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Lux's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/03/19/first/" class="post-title-link" itemprop="url">first page</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 2021-03-19 16:01:21 / Modified: 16:33:43" itemprop="dateCreated datePublished" datetime="2021-03-19T16:01:21+08:00">2021-03-19</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>Today, Mar 19th, I finished this first page..</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
 
 
 

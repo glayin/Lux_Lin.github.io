@@ -23,16 +23,16 @@
     var NexT = window.NexT || {};
     var CONFIG = {"hostname":"glayin.github.io","root":"/","images":"/images","scheme":"Muse","version":"8.2.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
   </script>
-<meta name="description" content="title :  微信小程序自定义组件date : 2021-04-07  Intro.自定义tabBar的配置在app.json文件的UsingComponents下注册 1234567891011121314151617181920&quot;tabBar&quot;: &amp;#123;  &quot;borderStyle&quot;: &quot;white&quot;,  &quot;se">
+<meta name="description" content="Intro.自定义tabBar的配置在app.json文件的UsingComponents下注册 1234567891011121314151617181920&quot;tabBar&quot;: &amp;#123;  &quot;borderStyle&quot;: &quot;white&quot;,  &quot;selectedColor&quot;: &quot;#333333&quot;,">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Lux&#39;s blog">
+<meta property="og:title" content="微信小程序自定义组件">
 <meta property="og:url" content="https://glayin.github.io/2021/04/07/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%20%E8%87%AA%E5%AE%9A%E4%B9%89%E7%BB%84%E4%BB%B6/index.html">
 <meta property="og:site_name" content="Lux&#39;s blog">
-<meta property="og:description" content="title :  微信小程序自定义组件date : 2021-04-07  Intro.自定义tabBar的配置在app.json文件的UsingComponents下注册 1234567891011121314151617181920&quot;tabBar&quot;: &amp;#123;  &quot;borderStyle&quot;: &quot;white&quot;,  &quot;se">
+<meta property="og:description" content="Intro.自定义tabBar的配置在app.json文件的UsingComponents下注册 1234567891011121314151617181920&quot;tabBar&quot;: &amp;#123;  &quot;borderStyle&quot;: &quot;white&quot;,  &quot;selectedColor&quot;: &quot;#333333&quot;,">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20210407001742700.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NjcyODA2OA==,size_16,color_FFFFFF,t_70">
 <meta property="article:published_time" content="2021-04-07T02:01:01.167Z">
-<meta property="article:modified_time" content="2021-04-07T02:12:15.794Z">
+<meta property="article:modified_time" content="2021-04-07T03:20:23.229Z">
 <meta property="article:author" content="Lux Lin">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://img-blog.csdnimg.cn/20210407001742700.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NjcyODA2OA==,size_16,color_FFFFFF,t_70">
@@ -50,7 +50,7 @@
     lang   : 'en'
   };
 </script>
-<title> | Lux's blog</title>
+<title>微信小程序自定义组件 | Lux's blog</title>
   
 
 
@@ -224,7 +224,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          
+          微信小程序自定义组件
         </h1>
 
         <div class="post-meta-container">
@@ -236,7 +236,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2021-04-07 10:01:01 / Modified: 10:12:15" itemprop="dateCreated datePublished" datetime="2021-04-07T10:01:01+08:00">2021-04-07</time>
+      <time title="Created: 2021-04-07 10:01:01 / Modified: 11:20:23" itemprop="dateCreated datePublished" datetime="2021-04-07T10:01:01+08:00">2021-04-07</time>
     </span>
 
   
@@ -249,10 +249,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <hr>
-<p>title :  微信小程序自定义组件<br>date : 2021-04-07</p>
-<hr>
-<h2 id="Intro-自定义tabBar的配置"><a href="#Intro-自定义tabBar的配置" class="headerlink" title="Intro.自定义tabBar的配置"></a>Intro.自定义tabBar的配置</h2><p>在app.json文件的UsingComponents下注册</p>
+        <h2 id="Intro-自定义tabBar的配置"><a href="#Intro-自定义tabBar的配置" class="headerlink" title="Intro.自定义tabBar的配置"></a>Intro.自定义tabBar的配置</h2><p>在app.json文件的UsingComponents下注册</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&quot;tabBar&quot;: &#123;</span><br><span class="line">  &quot;borderStyle&quot;: &quot;white&quot;,</span><br><span class="line">  &quot;selectedColor&quot;: &quot;#333333&quot;,</span><br><span class="line">  &quot;color&quot;: &quot;999999&quot;,</span><br><span class="line">  &quot;list&quot;: [</span><br><span class="line">    &#123;</span><br><span class="line">      &quot;text&quot;: &quot;阅读&quot;,</span><br><span class="line">      &quot;pagePath&quot;: &quot;pages&#x2F;post&#x2F;post&quot;,</span><br><span class="line">      &quot;iconPath&quot;: &quot;&#x2F;images&#x2F;tab&#x2F;post.png&quot;,</span><br><span class="line">      &quot;selectedIconPath&quot; : &quot;&#x2F;images&#x2F;tab&#x2F;post@highlight.png&quot;</span><br><span class="line"></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      &quot;text&quot;: &quot;电影&quot;,</span><br><span class="line">      &quot;pagePath&quot;: &quot;pages&#x2F;movies&#x2F;movies&quot;,</span><br><span class="line">      &quot;iconPath&quot;: &quot;&#x2F;images&#x2F;tab&#x2F;movie.png&quot;,</span><br><span class="line">      &quot;selectedIconPath&quot; : &quot;&#x2F;images&#x2F;tab&#x2F;movie@highlight.png&quot;</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>tabBar的案例可以接触到什么是自定义，但是自定义的程度很小，大部分还是内置完成的。<img src="https://img-blog.csdnimg.cn/20210407001742700.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NjcyODA2OA==,size_16,color_FFFFFF,t_70" alt="tarBar实例"><br>注意跳转到有选项卡的页面需要使用switchTab</p>
 <h2 id="如何创建第一个自定义组件"><a href="#如何创建第一个自定义组件" class="headerlink" title="如何创建第一个自定义组件"></a>如何创建第一个自定义组件</h2><p>①根目录下创建components&gt;post&gt;index<br>②components&gt;post&gt;index.js中定义属性<br>properties: {<br>  text: {<br>    type: String,//类型<br>    value: ‘123’//默认值<br>  }<br>}<br>③在page &gt; xx.json 定义名称<br>“usingComponents”: {<br>  “c-post”:”/components/post/index”<br>}<br>④在page &gt; xx.wxml中使用 <c-post text="abc" /><br>⑤components &gt; post &gt; index.wxml</p>

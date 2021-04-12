@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.2/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"glayin.github.io","root":"/","images":"/images","scheme":"Muse","version":"8.2.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
+  </script>
+<meta name="description" content="引入外部样式场景类的场景通常，我们会遇到引入第三方UI库的基础icon样式与设计稿有区别，颜色，边框等等，此时就可以通过引入外部样式类解决。或者有时自定义组件在页面里设置class后样式失效，也要通过外部样式类解决 引入外部样式类的步骤1.在组件的js文件里Component下添加externalClasses属性并赋值，即自己要给的类名。外部样式类 ‘f-class’按图示写法等同于在wxml标">
+<meta property="og:type" content="article">
+<meta property="og:title" content="微信小程序引入外部样式类externalClasses">
+<meta property="og:url" content="https://glayin.github.io/2021/04/12/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%BB%84%E4%BB%B6%E5%BC%95%E5%85%A5%E5%A4%96%E9%83%A8%E6%A0%B7%E5%BC%8F%E7%B1%BBexternalClasses/index.html">
+<meta property="og:site_name" content="Lux&#39;s blog">
+<meta property="og:description" content="引入外部样式场景类的场景通常，我们会遇到引入第三方UI库的基础icon样式与设计稿有区别，颜色，边框等等，此时就可以通过引入外部样式类解决。或者有时自定义组件在页面里设置class后样式失效，也要通过外部样式类解决 引入外部样式类的步骤1.在组件的js文件里Component下添加externalClasses属性并赋值，即自己要给的类名。外部样式类 ‘f-class’按图示写法等同于在wxml标">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210407152422568.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NjcyODA2OA==,size_16,color_FFFFFF,t_70">
+<meta property="article:published_time" content="2021-04-12T11:28:42.255Z">
+<meta property="article:modified_time" content="2021-04-12T11:30:25.991Z">
+<meta property="article:author" content="Lux Lin">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20210407152422568.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NjcyODA2OA==,size_16,color_FFFFFF,t_70">
+
+
+<link rel="canonical" href="https://glayin.github.io/2021/04/12/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%BB%84%E4%BB%B6%E5%BC%95%E5%85%A5%E5%A4%96%E9%83%A8%E6%A0%B7%E5%BC%8F%E7%B1%BBexternalClasses/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+<title>微信小程序引入外部样式类externalClasses | Lux's blog</title>
+  
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Lux's blog</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="home fa-fw"></i>Home</a></li>
+        <li class="menu-item menu-item-link"><a href="/link" rel="section"><i class="link fa-fw"></i>link</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%95%E5%85%A5%E5%A4%96%E9%83%A8%E6%A0%B7%E5%BC%8F%E5%9C%BA%E6%99%AF%E7%B1%BB%E7%9A%84%E5%9C%BA%E6%99%AF"><span class="nav-number">1.</span> <span class="nav-text">引入外部样式场景类的场景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%95%E5%85%A5%E5%A4%96%E9%83%A8%E6%A0%B7%E5%BC%8F%E7%B1%BB%E7%9A%84%E6%AD%A5%E9%AA%A4"><span class="nav-number">2.</span> <span class="nav-text">引入外部样式类的步骤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%9C%A8%E7%BB%84%E4%BB%B6%E7%9A%84js%E6%96%87%E4%BB%B6%E9%87%8CComponent%E4%B8%8B%E6%B7%BB%E5%8A%A0externalClasses%E5%B1%9E%E6%80%A7%E5%B9%B6%E8%B5%8B%E5%80%BC"><span class="nav-number">3.</span> <span class="nav-text">1.在组件的js文件里Component下添加externalClasses属性并赋值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E6%8A%8A%E8%BF%99%E4%B8%AA%E5%A4%96%E9%83%A8%E6%A0%B7%E5%BC%8F%E7%B1%BB%E6%B7%BB%E5%8A%A0%E5%88%B0%E7%BB%84%E4%BB%B6%E7%9A%84%E6%9C%80%E5%A4%96%E5%B1%82"><span class="nav-number">4.</span> <span class="nav-text">2. 把这个外部样式类添加到组件的最外层</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E5%9C%A8%E9%A1%B5%E9%9D%A2%E4%BD%BF%E7%94%A8%E8%BF%99%E4%B8%AA%E7%BB%84%E4%BB%B6%E6%97%B6%E7%BB%91%E5%AE%9A%E8%BF%99%E4%B8%AA%E5%A4%96%E9%83%A8%E6%A0%B7%E5%BC%8F%E7%B1%BB"><span class="nav-number">5.</span> <span class="nav-text">3.在页面使用这个组件时绑定这个外部样式类</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Lux Lin</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://glayin.github.io/2021/04/12/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%BB%84%E4%BB%B6%E5%BC%95%E5%85%A5%E5%A4%96%E9%83%A8%E6%A0%B7%E5%BC%8F%E7%B1%BBexternalClasses/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Lux Lin">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lux's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          微信小程序引入外部样式类externalClasses
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2021-04-12 19:28:42 / Modified: 19:30:25" itemprop="dateCreated datePublished" datetime="2021-04-12T19:28:42+08:00">2021-04-12</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="引入外部样式场景类的场景"><a href="#引入外部样式场景类的场景" class="headerlink" title="引入外部样式场景类的场景"></a>引入外部样式场景类的场景</h2><p>通常，我们会遇到引入第三方UI库的基础icon样式与设计稿有区别，颜色，边框等等，此时就可以通过引入外部样式类解决。<br>或者有时自定义组件在页面里设置class后样式失效，也要通过外部样式类解决</p>
+<h2 id="引入外部样式类的步骤"><a href="#引入外部样式类的步骤" class="headerlink" title="引入外部样式类的步骤"></a>引入外部样式类的步骤</h2><h2 id="1-在组件的js文件里Component下添加externalClasses属性并赋值"><a href="#1-在组件的js文件里Component下添加externalClasses属性并赋值" class="headerlink" title="1.在组件的js文件里Component下添加externalClasses属性并赋值"></a>1.在组件的js文件里Component下添加<code>externalClasses</code>属性并赋值</h2><p>，即自己要给的类名。外部样式类 ‘f-class’按图示写法等同于在wxml标签添加class = “.f-class”在wxss文件配置.f-class{}</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Component(&#123;</span><br><span class="line">  &#x2F;**</span><br><span class="line">   * 组件的属性列表</span><br><span class="line">   *&#x2F;</span><br><span class="line">  externalClasses:[&#39;f-class&#39;],</span><br><span class="line">  properties: &#123;</span><br><span class="line">  </span><br><span class="line">  &#125;,</span><br><span class="line"> </span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-把这个外部样式类添加到组件的最外层"><a href="#2-把这个外部样式类添加到组件的最外层" class="headerlink" title="2. 把这个外部样式类添加到组件的最外层"></a>2. 把这个外部样式类添加到组件的最外层</h2><p><img src="https://img-blog.csdnimg.cn/20210407152422568.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NjcyODA2OA==,size_16,color_FFFFFF,t_70" alt="***很关键，很多人会忽略掉这里没有设置这一步相当于没办法把外部样式类传入***"></p>
+<h2 id="3-在页面使用这个组件时绑定这个外部样式类"><a href="#3-在页面使用这个组件时绑定这个外部样式类" class="headerlink" title="3.在页面使用这个组件时绑定这个外部样式类"></a>3.在页面使用这个组件时绑定这个外部样式类</h2><p>注意在json文件绑定组件后wxml中写类时不再是class，而是刚才的f-class</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;movie-list f-class&#x3D;&quot;movie-list&quot; &#x2F;&gt;</span><br><span class="line">&lt;movie-list f-class&#x3D;&quot;movie-list&quot; &#x2F;&gt;</span><br><span class="line">&lt;movie-list f-class&#x3D;&quot;movie-list&quot; &#x2F;&gt;</span><br></pre></td></tr></table></figure>
+<p>接下来在页面的wxss样式文件中编辑movie-list的样式即可，这也是为什么叫做外部样式类的原因</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.movie-list&#123;</span><br><span class="line">  margin-bottom: 30rpx;</span><br><span class="line">  background-color: teal !important;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>另外： !important作用是提高样式优先级，把这一条要设置的样式不被其他覆盖，正常来说是离元素近的样式优先，这里出了问题，没有把 f-class 优先。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/04/07/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%20%E8%87%AA%E5%AE%9A%E4%B9%89%E7%BB%84%E4%BB%B6/" rel="prev" title="微信小程序自定义组件">
+                  <i class="fa fa-chevron-left"></i> 微信小程序自定义组件
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lux Lin</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

@@ -164,7 +164,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-count">9</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -194,6 +194,112 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://glayin.github.io/2021/09/01/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80%E5%A4%8D%E4%B9%A0%EF%BC%88%E4%B8%80%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Lux Lin">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lux's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/09/01/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80%E5%A4%8D%E4%B9%A0%EF%BC%88%E4%B8%80%EF%BC%89/" class="post-title-link" itemprop="url">Untitled</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2021-09-01 20:12:30 / Modified: 20:12:37" itemprop="dateCreated datePublished" datetime="2021-09-01T20:12:30+08:00">2021-09-01</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="一、HTML-CSS"><a href="#一、HTML-CSS" class="headerlink" title="一、HTML CSS"></a>一、HTML CSS</h2><p>（1）块状元素 &amp; 内联元素？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">display:block&#x2F;table; &#x2F;&#x2F; div h1 h2 table ul ol p ...</span><br><span class="line"></span><br><span class="line">display:inline&#x2F;inline-block; &#x2F;&#x2F; span img input button ...</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<p>（2）盒子模型的宽度？<br><img src="https://img-blog.csdnimg.cn/7b3a4bdd46c94a069b06a0492ec096ff.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NjcyODA2OA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">offsetWidth &#x3D; （内容宽度+内边距+边框） ， 无外边距</span><br><span class="line"></span><br><span class="line">122px</span><br><span class="line"></span><br><span class="line">把offsetWidth变成100px？</span><br><span class="line">box-sizing: border-box</span><br></pre></td></tr></table></figure>
+<p>（3）margin纵向重叠问题<br><img src="https://img-blog.csdnimg.cn/13cb8b35eda0460f80f8ddaa45dd9e07.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NjcyODA2OA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">相邻的margin-top 和 margin-bottom 会发生重叠</span><br><span class="line">空白内容的<span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span> 也会重叠</span><br><span class="line">15px</span><br></pre></td></tr></table></figure>
+<p>（4）margin负值问题</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">margin-top 和 margin-left 负值， 元素向上、向左移动</span><br><span class="line">margin-right负值，右侧元素左移，自身不受影响</span><br><span class="line">margin-bottom负值，下方元素上移，自身不受影响</span><br></pre></td></tr></table></figure>
+<p>（5）BFC理解与应用</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Block format context 块级格式化上下文</span><br><span class="line"></span><br><span class="line">一块独立渲染区域，内部元素的渲染不好影响边界以外的元素</span><br><span class="line"></span><br><span class="line">形成BFC条件</span><br><span class="line"></span><br><span class="line"> - float被设置</span><br><span class="line"> - position设置为absolute或fixed</span><br><span class="line"> - overflow不是visble(hiding)</span><br><span class="line"> - display 是 flex inline-block 等</span><br><span class="line"> </span><br><span class="line"> 常见应用： 清除浮动</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>（6）float布局</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">圣杯布局和双飞翼布局的目的</span><br><span class="line"></span><br><span class="line"> - 三栏布局，中间一栏最先加载和渲染（内容最重要）</span><br><span class="line"> - 两次内容固定，中间内容随着宽度自适应</span><br><span class="line"> - 一般用于PC网页</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>（7） flex布局</p>
+<p>justify-content　　项目在主轴上的对齐方式<br>align-items（align-self）　　项目在交叉轴上如何对齐</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">实现一个点数为3的骰子</span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span>&gt;</span></span><br><span class="line">        .box &#123;</span><br><span class="line"><span class="css">            <span class="attribute">width</span>: <span class="number">200px</span>;</span></span><br><span class="line"><span class="css">            <span class="attribute">height</span>: <span class="number">200px</span>;</span></span><br><span class="line"><span class="css">            <span class="attribute">border</span>: <span class="number">2px</span> solid <span class="number">#ccc</span>;</span></span><br><span class="line"><span class="css">            <span class="attribute">border-radius</span>: <span class="number">10px</span>;</span></span><br><span class="line"><span class="css">            <span class="attribute">padding</span>: <span class="number">20px</span>;</span></span><br><span class="line"></span><br><span class="line"><span class="css">            <span class="attribute">display</span>: flex;</span></span><br><span class="line"><span class="css">            <span class="attribute">justify-content</span>: space-between;</span></span><br><span class="line">        &#125;</span><br><span class="line">        .item &#123;</span><br><span class="line"><span class="css">            <span class="attribute">display</span>: block;</span></span><br><span class="line"><span class="css">            <span class="attribute">width</span>: <span class="number">40px</span>;</span></span><br><span class="line"><span class="css">            <span class="attribute">height</span>: <span class="number">40px</span>;</span></span><br><span class="line"><span class="css">            <span class="attribute">border-radius</span>: <span class="number">50%</span>;</span></span><br><span class="line"><span class="css">            <span class="attribute">background-color</span>: <span class="number">#666</span>;</span></span><br><span class="line">        &#125;</span><br><span class="line"><span class="css">        <span class="selector-class">.item</span><span class="selector-pseudo">:nth-child</span>(<span class="number">2</span>) &#123;</span></span><br><span class="line"><span class="css">            <span class="attribute">align-self</span>: center;</span></span><br><span class="line">        &#125;</span><br><span class="line"><span class="css">        <span class="selector-class">.item</span><span class="selector-pseudo">:nth-child</span>(<span class="number">3</span>) &#123;</span></span><br><span class="line"><span class="css">            <span class="attribute">align-self</span>: flex-end;</span></span><br><span class="line">        &#125;</span><br><span class="line">   <span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;item&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;item&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;item&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>（8）相对定位、绝对定位<br>absolute : 依据自身定位<br>relative : 依据最近一层的定位元素定位</p>
+<p>定位元素： absolute relative fixed<br>                   body</p>
+<p>(9)居中</p>
+<p>水平居中：</p>
+<ul>
+<li>inline元素：  text-align ： center</li>
+<li>block元素： margin ：auto</li>
+<li>absolute 元素： left : 50% + margin-left 负值</li>
+</ul>
+<p> 垂直居中：</p>
+<ul>
+<li>inline元素：line-height 的值等于height值</li>
+<li>absolute元素： top：50% + margin-top 负值</li>
+<li>absolute元素： transform(-50%, -50%)</li>
+<li>absolute元素： top,left,bottom,right = 0+ margin:auto</li>
+</ul>
+<p> （10） line-height继承<br> 出现百分数，按照父级元素继承，非本级。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span>&gt;</span></span><br><span class="line"><span class="css">    <span class="selector-tag">body</span> &#123;</span></span><br><span class="line"><span class="css">        <span class="attribute">font-size</span>: <span class="number">20px</span>;</span></span><br><span class="line"><span class="css">        <span class="attribute">line-height</span>: <span class="number">200%</span>;</span></span><br><span class="line">    &#125;</span><br><span class="line"><span class="css">    <span class="selector-tag">p</span> &#123;</span></span><br><span class="line"><span class="css">        <span class="attribute">background-color</span>: <span class="number">#ccc</span>;</span></span><br><span class="line"><span class="css">        <span class="attribute">font-size</span>: <span class="number">16px</span>;</span></span><br><span class="line">    &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>p的line-height 40px</p>
+<p>(11) 响应式</p>
+<ol>
+<li>rem是什么<br>px，绝对长度单位，最常用<br>em，相对长度单位，相对父元素，不常用<br>ren，相对长度单位，相对于根元素（html），常用于响应式布局<br>2）vh/vw<br>vh网页视图高度的1/100<br>vw网页视图宽度的1/100<br>vmax取两者最大值<br>vmin取两者最小值</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 

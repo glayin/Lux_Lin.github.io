@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.2/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"glayin.github.io","root":"/","images":"/images","scheme":"Muse","version":"8.2.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
+  </script>
+<meta name="description" content="开学了这一个月过得飞快，来到西电青岛住在家电齐全的loft公寓，不再限电让我开始了自己煮饭，浪费了大量时间在采购和家务上，健身房去的也少了，基本也就一个小时的样子。刷题没怎么刷，上上课，看前端的教程。上周五被安排了开发小程序前端的活，实在没想到只有我一个人来做，推脱也没推脱掉还是加油干完吧，做事有始有终比较好，功能也比较简单，是满意度调查问卷。 这一周多遇到的问题来总计一波  一开始做基本的布局还">
+<meta property="og:type" content="article">
+<meta property="og:title" content="调查问卷小程序开发记录">
+<meta property="og:url" content="https://glayin.github.io/2021/09/26/%E8%B0%83%E6%9F%A5%E9%97%AE%E5%8D%B7%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/index.html">
+<meta property="og:site_name" content="Lux&#39;s blog">
+<meta property="og:description" content="开学了这一个月过得飞快，来到西电青岛住在家电齐全的loft公寓，不再限电让我开始了自己煮饭，浪费了大量时间在采购和家务上，健身房去的也少了，基本也就一个小时的样子。刷题没怎么刷，上上课，看前端的教程。上周五被安排了开发小程序前端的活，实在没想到只有我一个人来做，推脱也没推脱掉还是加油干完吧，做事有始有终比较好，功能也比较简单，是满意度调查问卷。 这一周多遇到的问题来总计一波  一开始做基本的布局还">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/cc9c3afef33749168517b88e6ef65775.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBATHV4IExpbg==,size_13,color_FFFFFF,t_70,g_se,x_16">
+<meta property="article:published_time" content="2021-09-26T08:46:27.012Z">
+<meta property="article:modified_time" content="2021-09-26T08:47:20.198Z">
+<meta property="article:author" content="Lux Lin">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/cc9c3afef33749168517b88e6ef65775.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBATHV4IExpbg==,size_13,color_FFFFFF,t_70,g_se,x_16">
+
+
+<link rel="canonical" href="https://glayin.github.io/2021/09/26/%E8%B0%83%E6%9F%A5%E9%97%AE%E5%8D%B7%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+<title>调查问卷小程序开发记录 | Lux's blog</title>
+  
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Lux's blog</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="home fa-fw"></i>Home</a></li>
+        <li class="menu-item menu-item-link"><a href="/link" rel="section"><i class="link fa-fw"></i>link</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E8%8E%B7%E5%8F%96div%E7%9A%84%E4%B8%8B%E6%A0%87index"><span class="nav-number">1.</span> <span class="nav-text">如何获取div的下标index</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Lux Lin</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://glayin.github.io/2021/09/26/%E8%B0%83%E6%9F%A5%E9%97%AE%E5%8D%B7%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Lux Lin">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lux's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          调查问卷小程序开发记录
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2021-09-26 16:46:27 / Modified: 16:47:20" itemprop="dateCreated datePublished" datetime="2021-09-26T16:46:27+08:00">2021-09-26</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>开学了这一个月过得飞快，来到西电青岛住在家电齐全的loft公寓，不再限电让我开始了自己煮饭，浪费了大量时间在采购和家务上，健身房去的也少了，基本也就一个小时的样子。刷题没怎么刷，上上课，看前端的教程。<br>上周五被安排了开发小程序前端的活，实在没想到只有我一个人来做，推脱也没推脱掉还是加油干完吧，做事有始有终比较好，功能也比较简单，是满意度调查问卷。</p>
+<p>这一周多遇到的问题来总计一波</p>
+<p> 一开始做基本的布局还算顺利，引入了一个vtabs组件和radio-group组件完成问题栏和答案框</p>
+<p><img src="https://img-blog.csdnimg.cn/cc9c3afef33749168517b88e6ef65775.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBATHV4IExpbg==,size_13,color_FFFFFF,t_70,g_se,x_16" alt="初步布局"><br>之后一步需要获取到问题和答案并能传到后台，这里就有些阻碍了，</p>
+<ol>
+<li>点击问题的时候获取到问题： 一开始没什么思路把问题设置成上层view通关时间冒泡获取，可是这样用户去点问题也会把问题获取。问同学后知道正确的方法应该是想办法拿到当前问题的下标然后通过question[index]， 这个时候又遇到了难题<br>也就是<h2 id="如何获取div的下标index"><a href="#如何获取div的下标index" class="headerlink" title="如何获取div的下标index"></a>如何获取div的下标index</h2></li>
+</ol>
+<p> 通过这位的<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_45269116/article/details/106129360?utm_source=app&app_version=4.15.0&code=app_1562916241&uLinkId=usr1mkqgl919blen">博客</a>解决</p>
+<p>wx:for-index=‘变量名（随便起）’，它是指向当前元素的下标名，可以在其他事件中定义自定义事件（data-xxx=’‘，，该自定义属性可以在参数e下面打印出来）获取该下标。<br>但是data-index=”“ 不能在wx:for-index的组件里，不然js传不进下标<br>–来自<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_38614249/article/details/80913311">另一参考</a></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"> </span><br><span class="line"><span class="tag">&lt;<span class="name">mp-vtabs</span> <span class="attr">vtabs</span>=<span class="string">&quot;&#123;&#123;vtabs&#125;&#125;&quot;</span> <span class="attr">activeTab</span>=<span class="string">&quot;&#123;&#123;activeTab&#125;&#125;&quot;</span> <span class="attr">bindchange</span> = <span class="string">&#x27;onChange&#x27;</span>  <span class="attr">bindtabclick</span>=<span class="string">&quot;onTabCLick&quot;</span> <span class="attr">class</span>=<span class="string">&quot;test&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">block</span>   <span class="attr">wx:key</span>=<span class="string">&quot;title&quot;</span> <span class="attr">wx:for</span>=<span class="string">&quot;&#123;&#123;vtabs&#125;&#125;&quot;</span> &gt;</span> </span><br><span class="line">    <span class="tag">&lt;<span class="name">mp-vtabs-content</span> <span class="attr">tabIndex</span>=<span class="string">&quot;&#123;&#123;index&#125;&#125;&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">&quot;vtabs-content-item&quot;</span>  &gt;</span> </span><br><span class="line">   </span><br><span class="line">     <span class="tag">&lt;<span class="name">block</span> <span class="attr">wx:for</span> = <span class="string">&quot;&#123;&#123;vtabs[index].q&#125;&#125;&quot;</span>   <span class="attr">wx:for-index</span>= <span class="string">&quot;id&quot;</span>   <span class="attr">wx:key</span> = <span class="string">&quot;index&quot;</span> &gt;</span> </span><br><span class="line">     <span class="comment">&lt;!-- 引号里的变量名字可以自己取, 这里与上面区分改成id--&gt;</span></span><br><span class="line">     </span><br><span class="line">         </span><br><span class="line">        <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">&quot;question&quot;</span>  <span class="attr">data-question</span>= <span class="string">&quot;&#123;&#123;item&#125;&#125;&quot;</span>    &gt;</span>&#123;&#123;item&#125;&#125;</span><br><span class="line">           <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">&quot;grey&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">radio-group</span> <span class="attr">bindchange</span>=<span class="string">&quot;listenerRadioGroup&quot;</span> <span class="attr">data-id</span>=<span class="string">&quot;&#123;&#123;id&#125;&#125;&quot;</span>  <span class="attr">class</span>=<span class="string">&quot;radio&quot;</span> &gt;</span></span><br><span class="line"> <span class="comment">&lt;!-- data-id 可以通过e下的参数拿到 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">label</span>  <span class="attr">wx:for-items</span>=<span class="string">&quot;&#123;&#123;evaluation&#125;&#125;&quot;</span>  <span class="attr">wx:key</span> = <span class="string">&quot;index&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">            <span class="tag">&lt;<span class="name">radio</span> <span class="attr">value</span>=<span class="string">&quot;&#123;&#123;item.name&#125;&#125;,&#123;&#123;item.value&#125;&#125;&quot;</span> <span class="attr">checked</span>=<span class="string">&quot;&#123;&#123;item.checked&#125;&#125;&quot;</span>/&gt;</span>&#123;&#123;item.name&#125;&#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">label</span>&gt;</span> </span><br><span class="line">        <span class="tag">&lt;/<span class="name">radio-group</span>&gt;</span></span><br><span class="line">         </span><br><span class="line">         <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">       <span class="tag">&lt;/<span class="name">block</span>&gt;</span>  </span><br><span class="line">       <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line">     </span><br><span class="line">    <span class="tag">&lt;/<span class="name">mp-vtabs-content</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">block</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mp-vtabs</span>&gt;</span></span><br><span class="line"> </span><br></pre></td></tr></table></figure>
+<p>可以看出使用了两个下标，tab栏的下标在外层， 具体问题的下标在内层  </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">  <span class="function"><span class="title">onTabCLick</span>(<span class="params">e</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> arr= <span class="keyword">new</span> <span class="built_in">Array</span>()</span><br><span class="line">    <span class="keyword">const</span> index = e.detail.index</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">this</span>.setData(&#123;index, index&#125;) </span><br><span class="line"> </span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">this</span>.data.index)</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">onChange</span>(<span class="params">e</span>)</span>&#123;</span><br><span class="line">   </span><br><span class="line">    <span class="keyword">let</span> index = e.detail.index</span><br><span class="line">    </span><br><span class="line">     <span class="built_in">this</span>.setData(&#123;index, index&#125;) </span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">listenerRadioGroup: <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> index = <span class="built_in">this</span>.data.index</span><br><span class="line"> </span><br><span class="line">  <span class="keyword">var</span> id = e.target.dataset.id<span class="comment">// 对应wxml中的data-id </span></span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&quot;id: &quot;</span>+id, <span class="built_in">this</span>.data.index)</span><br><span class="line">  <span class="keyword">let</span> vtab = <span class="built_in">this</span>.data.vtabs[index]</span><br><span class="line">  <span class="keyword">let</span> record = <span class="built_in">this</span>.data.vtabs[index].ans[id]</span><br><span class="line">   </span><br><span class="line">  record.push( &#123;<span class="attr">id</span>:id,</span><br><span class="line">    question: vtab.q[id],</span><br><span class="line">    val:ans&#125;)</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="built_in">this</span>.data.vtabs)</span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/09/01/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80%E5%A4%8D%E4%B9%A0%EF%BC%88%E4%B8%80%EF%BC%89/" rel="prev" title="前端基础复习（一） HTML+CSS">
+                  <i class="fa fa-chevron-left"></i> 前端基础复习（一） HTML+CSS
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lux Lin</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

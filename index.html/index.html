@@ -164,7 +164,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-count">12</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -194,6 +194,94 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://glayin.github.io/2021/11/10/React%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0day2_React%E7%BB%84%E4%BB%B6_dom%E6%93%8D%E4%BD%9Cref/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Lux Lin">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lux's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/11/10/React%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0day2_React%E7%BB%84%E4%BB%B6_dom%E6%93%8D%E4%BD%9Cref/" class="post-title-link" itemprop="url">Untitled</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2021-11-10 16:20:07 / Modified: 16:35:20" itemprop="dateCreated datePublished" datetime="2021-11-10T16:20:07+08:00">2021-11-10</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <hr>
+<p>title:React学习笔记day02_React组件_dom操作ref<br>date:2021-11-10 16:15:01</p>
+<hr>
+<h2 id="1-React组件父子组件通信"><a href="#1-React组件父子组件通信" class="headerlink" title="1.React组件父子组件通信"></a>1.React组件父子组件通信</h2><p>父组件通过在子组件的标签上添加属性传递给子组件（函数也可以），子组件通过<code>this.props</code>接收父组件传递过来的值。<br>父组件中</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"> <span class="function"><span class="title">getListItems</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span>  <span class="built_in">this</span>.state.list.map(<span class="function">(<span class="params">value,index</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="comment">//return () 可以写多行</span></span><br><span class="line">        <span class="comment">//父组件通过属性传递子组件</span></span><br><span class="line">        <span class="keyword">return</span><span class="xml"><span class="tag">&lt;<span class="name">TodoItems</span>  <span class="attr">content</span> = <span class="string">&#123;value&#125;</span></span></span></span><br><span class="line"><span class="xml">                key = &#123;index&#125;</span></span><br><span class="line"><span class="xml">                deleteFunction = &#123;this.handleItemClick&#125;</span></span><br><span class="line"><span class="xml">        /&gt;</span></span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>子组件中</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">render</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="comment">//子组件通过this.props的属性，接收父组件的值</span></span><br><span class="line">    <span class="keyword">const</span> &#123;content&#125; = <span class="built_in">this</span>.props</span><br><span class="line">    <span class="comment">// const content = this.props.content</span></span><br><span class="line">    <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">li</span> <span class="attr">onClick</span> = <span class="string">&#123;this.handleItemClick&#125;</span>&gt;</span>&#123;content&#125; <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>子组件想要给父组件传递数据（更改数据），需要调用父组件传递过来的方法，父组件的方法要在父组件中绑定正确的this指向(父组件自己)，本质上是还是修改父组件的数据。<br>子组件中</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">handleItemClick</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//改变父组件中list数据</span></span><br><span class="line">    <span class="comment">//子组件想要和父组件通信，它要调用父组件传递过来的方法</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> &#123;deleteFunction, index &#125; = <span class="built_in">this</span>.props;</span><br><span class="line">    <span class="comment">//解构赋值</span></span><br><span class="line">    deleteFunction(index)</span><br><span class="line">    <span class="comment">// this.props.deleteFunction(this.props.index)</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="2-render（）函数何时执行"><a href="#2-render（）函数何时执行" class="headerlink" title="2. render（）函数何时执行"></a>2. render（）函数何时执行</h2><pre><code>//当组件初次创建时render会被执行一次
+//当state数据发生变化的时候，render会被重新执行
+//当props数据发生变化时，render会被重新执行
+</code></pre>
+<h2 id="3-react的Dom操作功能-ref属性"><a href="#3-react的Dom操作功能-ref属性" class="headerlink" title="3.react的Dom操作功能_ref属性"></a>3.react的Dom操作功能_ref属性</h2><pre><code>    //ref写在组件标签上，获取的是js实例
+    //ref写在html标签上，获取的是dom节点
+    
+</code></pre>
+<p> 父组件</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"> <span class="class"><span class="keyword">class</span> <span class="title">Counter</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="title">constructor</span>(<span class="params">props</span>)</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>(props);</span><br><span class="line">        <span class="built_in">this</span>.handleBtnClick = <span class="built_in">this</span>.handleBtnClick.bind(<span class="built_in">this</span>);</span><br><span class="line">        <span class="built_in">this</span>.state = &#123;</span><br><span class="line">            counter:<span class="number">1</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="title">handleBtnClick</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="built_in">this</span>.childElem)</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="built_in">this</span>.buttonELem)</span><br><span class="line">        <span class="keyword">const</span> newCounter = <span class="built_in">this</span>.state.counter + <span class="number">1</span>;</span><br><span class="line">        <span class="built_in">this</span>.setState(&#123;</span><br><span class="line">            counter : newCounter</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="title">render</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">        <span class="comment">//ref写在组件标签上，获取的是js实例</span></span><br><span class="line">        <span class="comment">//ref写在html标签上，获取的是dom节点</span></span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&#x27;render&#x27;</span>)</span><br><span class="line">        <span class="comment">//当组件初次创建时render会被执行一次</span></span><br><span class="line">        <span class="comment">//当state数据发生变化的时候，render会被重新执行</span></span><br><span class="line">        <span class="comment">//当props数据发生变化时，render会被重新执行</span></span><br><span class="line">        <span class="keyword">return</span>(</span><br><span class="line">            &lt;Fragment&gt;</span><br><span class="line">            &lt;button onClick=&#123;<span class="built_in">this</span>.handleBtnClick&#125;</span><br><span class="line">                    ref = &#123; <span class="function">(<span class="params">button</span>) =&gt;</span> &#123;<span class="built_in">this</span>.buttonElem = button&#125;&#125;&gt;</span><br><span class="line">            增加&lt;/button&gt;</span><br><span class="line">            </span><br><span class="line"></span><br><span class="line">            &lt;Child number = &#123;<span class="built_in">this</span>.state.counter&#125; ref = &#123; <span class="function">(<span class="params">child</span>) =&gt;</span> &#123;<span class="built_in">this</span>.childElem = child&#125;&#125;/&gt;</span><br><span class="line">            &lt;/Fragment&gt;</span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>子组件</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Child</span> <span class="keyword">extends</span> <span class="title">Component</span></span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="title">render</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span>(</span><br><span class="line">             &lt;div&gt;&#123;<span class="built_in">this</span>.props.number&#125;&lt;/div&gt;</span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> Child</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>获取dom的效果</p>
+<p><img src="https://img-blog.csdnimg.cn/de3f562471064f68b1ce14cd11886a95.png" alt="在这里插入图片描述"></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -925,69 +1013,6 @@
 <p>Step3: register the component in the json<br>the component name can be named by developer<br>ex:<br><code>&quot;l-avatar”:“ /minipaogarm_npm/lin-ui/avatar/index”</code></p>
 <img src ="https://img1.sycdn.imooc.com/szimg/5fa2bc400001037c19201080.jpg" >
 
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://glayin.github.io/2021/03/21/miniprogram2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Lux Lin">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Lux's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/03/21/miniprogram2/" class="post-title-link" itemprop="url">Untitled</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2021-03-21 11:53:16" itemprop="dateCreated datePublished" datetime="2021-03-21T11:53:16+08:00">2021-03-21</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          
       
     </div>
 

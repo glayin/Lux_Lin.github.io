@@ -164,7 +164,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-count">13</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -194,6 +194,76 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://glayin.github.io/2021/11/15/React%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0day03_React%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%87%BD%E6%95%B0%E5%8F%8A%E5%BA%94%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Lux Lin">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lux's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/11/15/React%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0day03_React%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%87%BD%E6%95%B0%E5%8F%8A%E5%BA%94%E7%94%A8/" class="post-title-link" itemprop="url">React学习笔记day03_React生命周期函数及其应用</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2021-11-15 22:00:23 / Modified: 22:01:48" itemprop="dateCreated datePublished" datetime="2021-11-15T22:00:23+08:00">2021-11-15</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="1-React生命周期流程"><a href="#1-React生命周期流程" class="headerlink" title="1.React生命周期流程"></a>1.React生命周期流程</h2><p><img src="https://img-blog.csdnimg.cn/5016d97a0cd04b1887117d06b75b50dd.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBATHV4IExpbg==,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"><br>   根据上图<br>   //组件挂载前执行<br>    componentWillMount(){<br>        console.log(‘componentWillMount’)<br>    }<br>    //组件挂载后自动执行<br>    componentDidMount() {<br>        //axios请求在这里发<br>        //promise存的请求过程<br>        const promise = axios.get(‘<a target="_blank" rel="noopener" href="http://www.dell-lee.com/react/api/demo.json&#39;">http://www.dell-lee.com/react/api/demo.json&#39;</a>)<br>        promise.then((res) =&gt;{<br>            console.log(res)<br>        })<br>        console.log(‘componentDidMount’ )<br>    }<br>    //组件更新前自动执行<br>    shouldComponentUpdate() {<br>        console.log(‘shouldComponentUpdate’)<br>        return true<br>    }<br>    //组件更新前 shouldComponentUpdate之后 自动执行<br>    componentWillUpdate(){<br>        console.log(‘componentWillUpdate’)<br>    }<br>    //组件更新前 shouldComponentUpdate之后，自动执行<br>    componentDidUpdate() {<br>        console.log(‘componentWillUnmount’)<br>    }</p>
+<h2 id="2-生命周期函数的应用"><a href="#2-生命周期函数的应用" class="headerlink" title="2.生命周期函数的应用"></a>2.生命周期函数的应用</h2><p>（1）组件过载完成，render（）执行完绑定一个window点击的效果</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">componentDidMount</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line"> </span><br><span class="line">    <span class="built_in">window</span>.addEventListener(<span class="string">&#x27;click&#x27;</span>, <span class="function">() =&gt;</span> &#123;<span class="built_in">console</span>.log(<span class="string">&#x27;window click&#x27;</span>)&#125;)</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>（2）axios请求通常在componentDidMount（）l</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">componentDidMount</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="comment">//axios请求在这里发</span></span><br><span class="line">    <span class="comment">//promise存的请求过程</span></span><br><span class="line">   <span class="keyword">const</span> promise = axios.get(<span class="string">&#x27;http://www.dell-lee.com/react/api/demo.json&#x27;</span>)</span><br><span class="line">    promise.then(<span class="function">(<span class="params">res</span>) =&gt;</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(res)</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;componentDidMount&#x27;</span> )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -936,79 +1006,6 @@
 <p><img src="https://img-blog.csdnimg.cn/20210330021713954.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NjcyODA2OA==,size_16,color_FFFFFF,t_70#pic_center" alt="async await"><br><em>async await语法糖</em></p>
 <p>当且仅当async修饰函数后，函数内部可以使用await</p>
 <p>await会拿到resolve结果，是then函数的语法糖。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://glayin.github.io/2021/03/21/miniprogram_learning_components/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Lux Lin">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Lux's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/03/21/miniprogram_learning_components/" class="post-title-link" itemprop="url">miniprogram components</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 2021-03-21 11:55:22 / Modified: 12:12:44" itemprop="dateCreated datePublished" datetime="2021-03-21T11:55:22+08:00">2021-03-21</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>Step1： import the LinUI library<br><code>npm init ; npm install linUi </code><br><img src =" https://img1.mukewang.com/szimg/5fd43ddf0001236e19201080.jpg"></p>
-<p>if you meet error like “verb npm-session f173cfd1e0947ca0”</p>
-<p>you may try<br><code>npm config set registry http://registry.npm.taobao.org</code><br>then import LinUI again </p>
-<p>Step2: (important) construct npm</p>
-<p>click the tools on the top bar, find the “construct npm” choice</p>
-<img src = "https://img1.sycdn.imooc.com/szimg/603dfe710001d07719201080-156-88.jpg" >
-
-<p>Step3: register the component in the json<br>the component name can be named by developer<br>ex:<br><code>&quot;l-avatar”:“ /minipaogarm_npm/lin-ui/avatar/index”</code></p>
-<img src ="https://img1.sycdn.imooc.com/szimg/5fa2bc400001037c19201080.jpg" >
 
       
     </div>

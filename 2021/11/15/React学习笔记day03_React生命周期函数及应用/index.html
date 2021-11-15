@@ -23,20 +23,22 @@
     var NexT = window.NexT || {};
     var CONFIG = {"hostname":"glayin.github.io","root":"/","images":"/images","scheme":"Muse","version":"8.2.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
   </script>
-<meta name="description" content="Today, Mar 19th, I finished this first page..">
+<meta name="description" content="1.React生命周期流程   根据上图   &#x2F;&#x2F;组件挂载前执行    componentWillMount(){        console.log(‘componentWillMount’)    }    &#x2F;&#x2F;组件挂载后自动执行    componentDidMount() {        &#x2F;&#x2F;axios请求在这里发        &#x2F;&#x2F;promise存的请求过程        const">
 <meta property="og:type" content="article">
-<meta property="og:title" content="first page">
-<meta property="og:url" content="https://glayin.github.io/2021/03/19/first/index.html">
+<meta property="og:title" content="React学习笔记day03_React生命周期函数及其应用">
+<meta property="og:url" content="https://glayin.github.io/2021/11/15/React%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0day03_React%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%87%BD%E6%95%B0%E5%8F%8A%E5%BA%94%E7%94%A8/index.html">
 <meta property="og:site_name" content="Lux&#39;s blog">
-<meta property="og:description" content="Today, Mar 19th, I finished this first page..">
+<meta property="og:description" content="1.React生命周期流程   根据上图   &#x2F;&#x2F;组件挂载前执行    componentWillMount(){        console.log(‘componentWillMount’)    }    &#x2F;&#x2F;组件挂载后自动执行    componentDidMount() {        &#x2F;&#x2F;axios请求在这里发        &#x2F;&#x2F;promise存的请求过程        const">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-03-19T08:01:21.163Z">
-<meta property="article:modified_time" content="2021-03-19T08:33:43.773Z">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/5016d97a0cd04b1887117d06b75b50dd.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBATHV4IExpbg==,size_20,color_FFFFFF,t_70,g_se,x_16">
+<meta property="article:published_time" content="2021-11-15T14:00:23.820Z">
+<meta property="article:modified_time" content="2021-11-15T14:01:48.853Z">
 <meta property="article:author" content="Lux Lin">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/5016d97a0cd04b1887117d06b75b50dd.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBATHV4IExpbg==,size_20,color_FFFFFF,t_70,g_se,x_16">
 
 
-<link rel="canonical" href="https://glayin.github.io/2021/03/19/first/">
+<link rel="canonical" href="https://glayin.github.io/2021/11/15/React%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0day03_React%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%87%BD%E6%95%B0%E5%8F%8A%E5%BA%94%E7%94%A8/">
 
 
 <script class="page-configurations">
@@ -48,7 +50,7 @@
     lang   : 'en'
   };
 </script>
-<title>first page | Lux's blog</title>
+<title>React学习笔记day03_React生命周期函数及其应用 | Lux's blog</title>
   
 
 
@@ -143,7 +145,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           Table of Contents
@@ -156,6 +158,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-React%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E6%B5%81%E7%A8%8B"><span class="nav-number">1.</span> <span class="nav-text">1.React生命周期流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%87%BD%E6%95%B0%E7%9A%84%E5%BA%94%E7%94%A8"><span class="nav-number">2.</span> <span class="nav-text">2.生命周期函数的应用</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -208,7 +211,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://glayin.github.io/2021/03/19/first/">
+    <link itemprop="mainEntityOfPage" href="https://glayin.github.io/2021/11/15/React%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0day03_React%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%87%BD%E6%95%B0%E5%8F%8A%E5%BA%94%E7%94%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -221,7 +224,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          first page
+          React学习笔记day03_React生命周期函数及其应用
         </h1>
 
         <div class="post-meta-container">
@@ -233,7 +236,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2021-03-19 16:01:21 / Modified: 16:33:43" itemprop="dateCreated datePublished" datetime="2021-03-19T16:01:21+08:00">2021-03-19</time>
+      <time title="Created: 2021-11-15 22:00:23 / Modified: 22:01:48" itemprop="dateCreated datePublished" datetime="2021-11-15T22:00:23+08:00">2021-11-15</time>
     </span>
 
   
@@ -246,7 +249,12 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>Today, Mar 19th, I finished this first page..</p>
+        <h2 id="1-React生命周期流程"><a href="#1-React生命周期流程" class="headerlink" title="1.React生命周期流程"></a>1.React生命周期流程</h2><p><img src="https://img-blog.csdnimg.cn/5016d97a0cd04b1887117d06b75b50dd.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBATHV4IExpbg==,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"><br>   根据上图<br>   //组件挂载前执行<br>    componentWillMount(){<br>        console.log(‘componentWillMount’)<br>    }<br>    //组件挂载后自动执行<br>    componentDidMount() {<br>        //axios请求在这里发<br>        //promise存的请求过程<br>        const promise = axios.get(‘<a target="_blank" rel="noopener" href="http://www.dell-lee.com/react/api/demo.json&#39;">http://www.dell-lee.com/react/api/demo.json&#39;</a>)<br>        promise.then((res) =&gt;{<br>            console.log(res)<br>        })<br>        console.log(‘componentDidMount’ )<br>    }<br>    //组件更新前自动执行<br>    shouldComponentUpdate() {<br>        console.log(‘shouldComponentUpdate’)<br>        return true<br>    }<br>    //组件更新前 shouldComponentUpdate之后 自动执行<br>    componentWillUpdate(){<br>        console.log(‘componentWillUpdate’)<br>    }<br>    //组件更新前 shouldComponentUpdate之后，自动执行<br>    componentDidUpdate() {<br>        console.log(‘componentWillUnmount’)<br>    }</p>
+<h2 id="2-生命周期函数的应用"><a href="#2-生命周期函数的应用" class="headerlink" title="2.生命周期函数的应用"></a>2.生命周期函数的应用</h2><p>（1）组件过载完成，render（）执行完绑定一个window点击的效果</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">componentDidMount</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line"> </span><br><span class="line">    <span class="built_in">window</span>.addEventListener(<span class="string">&#x27;click&#x27;</span>, <span class="function">() =&gt;</span> &#123;<span class="built_in">console</span>.log(<span class="string">&#x27;window click&#x27;</span>)&#125;)</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>（2）axios请求通常在componentDidMount（）l</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">componentDidMount</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="comment">//axios请求在这里发</span></span><br><span class="line">    <span class="comment">//promise存的请求过程</span></span><br><span class="line">   <span class="keyword">const</span> promise = axios.get(<span class="string">&#x27;http://www.dell-lee.com/react/api/demo.json&#x27;</span>)</span><br><span class="line">    promise.then(<span class="function">(<span class="params">res</span>) =&gt;</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(res)</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;componentDidMount&#x27;</span> )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 
     </div>
 
@@ -260,11 +268,11 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
+                <a href="/2021/11/10/React%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0day2_React%E7%BB%84%E4%BB%B6_dom%E6%93%8D%E4%BD%9Cref/" rel="prev" title="React学习笔记day02_React组件_dom操作ref">
+                  <i class="fa fa-chevron-left"></i> React学习笔记day02_React组件_dom操作ref
+                </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2021/03/21/miniprogram2/" rel="next" title="">
-                   <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>

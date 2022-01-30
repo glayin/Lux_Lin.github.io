@@ -164,7 +164,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-count">15</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -194,6 +194,95 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://glayin.github.io/2021/04/04/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%20%E5%B0%8F%E5%9E%8B%E9%9F%B3%E4%B9%90%E6%92%AD%E6%94%BE%E6%A8%A1%E5%9D%97%20%E6%AF%8F%E4%B8%AA%E9%A1%B5%E9%9D%A2%E6%8F%92%E5%85%A5%E4%B8%8D%E5%90%8C%E9%9F%B3%E9%A2%91/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Lux Lin">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lux's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/04/04/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%20%E5%B0%8F%E5%9E%8B%E9%9F%B3%E4%B9%90%E6%92%AD%E6%94%BE%E6%A8%A1%E5%9D%97%20%E6%AF%8F%E4%B8%AA%E9%A1%B5%E9%9D%A2%E6%8F%92%E5%85%A5%E4%B8%8D%E5%90%8C%E9%9F%B3%E9%A2%91/" class="post-title-link" itemprop="url">微信小程序音乐播放</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2021-04-04 01:12:37 / Modified: 01:33:58" itemprop="dateCreated datePublished" datetime="2021-04-04T01:12:37+08:00">2021-04-04</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="调用小程序音乐播放API"><a href="#调用小程序音乐播放API" class="headerlink" title="调用小程序音乐播放API"></a>调用小程序音乐播放API</h2><p><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/api/media/background-audio/BackgroundAudioManager.html">BackgroundAudioManager</a><br>BackgroundAudioManager实例，可以通过wx.getBackgroundAudioManager获取。</p>
+<p>string  str / string title 两个必须</p>
+<p>js文件里注册一个播放事件 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">onMusic()&#123;</span><br><span class="line">	const mgr &#x3D; wx.getBackgroundAudioManager()</span><br><span class="line">	mgr.src &#x3D; postList[0].music.url</span><br><span class="line">	mgr.title &#x3D; postList[0].music.title</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>设置可以后台播放： 在app.json文件中设置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">“requiredBackgroundModes” : [&quot;audio&quot;,&quot;location&quot;]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="每个页面播放实现播放暂停"><a href="#每个页面播放实现播放暂停" class="headerlink" title="每个页面播放实现播放暂停"></a>每个页面播放实现播放暂停</h2><p>再看一眼上面的onMusic很明显是只播放了一个音频文件，有问题，所以要把它替换成对应页面的，通过获取相应的索引拿到</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const music &#x3D; postList[this.data._pid].music</span><br><span class="line">      mgr.src &#x3D; music.url</span><br><span class="line">      mgr.title &#x3D; music.title</span><br></pre></td></tr></table></figure>
+<p>接下来你可能注意到无法停止播放音乐，所以要引入一个控制变量isPlaying到页面的data下，以及播放停止的函数下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">onMusicStop(event)&#123;</span><br><span class="line">  const mgr &#x3D; this.data._mgr</span><br><span class="line">  mgr.pause()</span><br><span class="line">  app.gIsPlayingMusic &#x3D; false</span><br><span class="line">  app.gIsPlayingPostId &#x3D; -1</span><br><span class="line">  this.setData(&#123;</span><br><span class="line">    isPlaying:false</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">  onMusicStart(event)&#123;</span><br><span class="line"></span><br><span class="line">     const mgr &#x3D; this.data._mgr</span><br><span class="line">      </span><br><span class="line">     const music &#x3D; postList[this.data._pid].music</span><br><span class="line">     mgr.src &#x3D; music.url</span><br><span class="line">     mgr.title &#x3D; music.title</span><br><span class="line">     mgr.coverImgUrl &#x3D; music.coverImg</span><br><span class="line">this.setData(&#123;</span><br><span class="line">       isPlaying:true</span><br><span class="line">     &#125;)</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>要有图标来对应音乐播放状态，暂停或是播放中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;image wx:if &#x3D;&quot;&#123;&#123;!isPlaying&#125;&#125;&quot; bind:tap &#x3D; &quot;onMusicStart&quot; class &#x3D; &quot;audio&quot; src&#x3D;&quot;&#x2F;images&#x2F;music&#x2F;music-start.png&quot;&gt;&lt;&#x2F;image&gt;</span><br><span class="line">&lt;image wx:else bind:tap &#x3D; &quot;onMusicStop&quot; class &#x3D; &quot;audio&quot; src &#x3D; &quot;&#x2F;images&#x2F;music&#x2F;music-stop.png&quot;&gt;&lt;&#x2F;image&gt;</span><br></pre></td></tr></table></figure>
+<p>另一种方式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;image  bind:tap &#x3D; &quot;onMusic&quot; class &#x3D; &quot;audio&quot; src&#x3D;&quot;&#123;&#123;isPlaying?&#39;&#x2F;images&#x2F;music&#x2F;music-stop.png&#39;:&#39;&#x2F;images&#x2F;music&#x2F;music-start.png&#39;&#125;&#125;&quot;&gt;&lt;&#x2F;image&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="音乐面板能够与图标状态同步"><a href="#音乐面板能够与图标状态同步" class="headerlink" title="音乐面板能够与图标状态同步"></a>音乐面板能够与图标状态同步</h2><p>即监听背景音频播放事件,<br><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/api/media/background-audio/BackgroundAudioManager.onPlay.html">onPlay</a><br>特点是：只要音乐播放了，传进来的callback函数就会被执行<br> <a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/api/media/background-audio/BackgroundAudioManager.onStop.html">onStop</a><br>特点是：只要音乐停止了，传进来的callback函数就会被执行<br><img src="https://img-blog.csdnimg.cn/img_convert/46710eff8fbf9ce7c96857f6ed6e6bab.png#pic_center" alt="在这里插入图片描述"></p>
+<h2 id="全局变量解决音乐播放状态初始化不正确的问题"><a href="#全局变量解决音乐播放状态初始化不正确的问题" class="headerlink" title="全局变量解决音乐播放状态初始化不正确的问题"></a>全局变量解决音乐播放状态初始化不正确的问题</h2><p>app.js中设置全局变量gIsPlayingMusic : false</p>
+<p>获取全局变量<code>const = getApp()</code></p>
+<h2 id="让每篇文章音乐独立显示状态"><a href="#让每篇文章音乐独立显示状态" class="headerlink" title="让每篇文章音乐独立显示状态"></a>让每篇文章音乐独立显示状态</h2><p>一首音乐播放时让其它页面未播放，在全局App.js设置索引位-1<br>在start和stop中分别设置 此变量的值（start中 变量=this.data._pid; stop中 变量=-1）<br>pages中创建函数currentMusicPlaying（）判断 变量的id是否是当前播放的id(app.gIsPlayingMusic===this.data._pid  return true)<br>再在isPlaying精确绑定this.currentMusicPlaying<br>实现单独播放不影响其它界面的音乐播放按钮</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line">onLoad: function (options) &#123;</span><br><span class="line">   console.log(options)</span><br><span class="line">   this.data._pid &#x3D; options.pid</span><br><span class="line">   const postsCollected &#x3D; wx.getStorageSync(&#39;posts_collected&#39;)</span><br><span class="line">   this.data._postCollected &#x3D; postsCollected</span><br><span class="line">   const postData &#x3D; postList[options.pid]</span><br><span class="line">   const collected &#x3D; postsCollected[this.data._pid]</span><br><span class="line">   console.log(collected)</span><br><span class="line">   const mgr &#x3D; wx.getBackgroundAudioManager()</span><br><span class="line">   this.data._mgr &#x3D; mgr</span><br><span class="line">   console.log(postData)</span><br><span class="line">   this.setData(&#123;</span><br><span class="line">     postData,</span><br><span class="line">     collected,</span><br><span class="line">     isPlaying:this.currentMusicIsPlaying()</span><br><span class="line">   &#125;)</span><br><span class="line">   mgr.onPlay(this.onMusicStart)</span><br><span class="line">   mgr.onPause(this.onMusicStop)</span><br><span class="line"> &#125;,</span><br><span class="line"></span><br><span class="line"> currentMusicIsPlaying()&#123;</span><br><span class="line">   if(app.gIsPlayingMusic &amp;&amp; app.gIsPlayingPostId &#x3D;&#x3D;&#x3D; this.data._pid)&#123;</span><br><span class="line">      </span><br><span class="line">       return true</span><br><span class="line">     &#125;</span><br><span class="line">     return false</span><br><span class="line">   &#125;,</span><br><span class="line">   </span><br><span class="line">  </span><br><span class="line"></span><br><span class="line"> onMusicStart(event)&#123;</span><br><span class="line"></span><br><span class="line">     const mgr &#x3D; this.data._mgr</span><br><span class="line">      </span><br><span class="line">     const music &#x3D; postList[this.data._pid].music</span><br><span class="line">     mgr.src &#x3D; music.url</span><br><span class="line">     mgr.title &#x3D; music.title</span><br><span class="line">     mgr.coverImgUrl &#x3D; music.coverImg</span><br><span class="line"></span><br><span class="line">     app.gIsPlayingMusic &#x3D; true</span><br><span class="line">     app.gIsPlayingPostId &#x3D; this.data._pid</span><br><span class="line">     this.setData(&#123;</span><br><span class="line">       isPlaying:true</span><br><span class="line">     &#125;)</span><br><span class="line">   &#x2F;&#x2F;const mgr &#x3D; wx.getBackgroundAudioManager()</span><br><span class="line">   </span><br><span class="line">    </span><br><span class="line">   mgr.onPlay(this.onMusicStart)</span><br><span class="line">   mgr.onPause(this.onMusicStop)</span><br><span class="line"> &#125;, </span><br><span class="line"></span><br><span class="line"> onMusicStop(event)&#123;</span><br><span class="line">   const mgr &#x3D; this.data._mgr</span><br><span class="line">   mgr.pause()</span><br><span class="line">   app.gIsPlayingMusic &#x3D; false</span><br><span class="line">   app.gIsPlayingPostId &#x3D; -1</span><br><span class="line">   this.setData(&#123;</span><br><span class="line">     isPlaying:false</span><br><span class="line">   &#125;)</span><br><span class="line"> &#125;,</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -523,7 +612,7 @@
 
 <div class="copyright">
   &copy; 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

@@ -23,16 +23,26 @@
     var NexT = window.NexT || {};
     var CONFIG = {"hostname":"glayin.github.io","root":"/","images":"/images","scheme":"Muse","version":"8.2.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
   </script>
-<meta property="og:type" content="website">
-<meta property="og:title" content="Lux&#39;s blog">
-<meta property="og:url" content="https://glayin.github.io/archives/2021/03/index.html">
+<meta name="description" content="优点：1.可以把业务数据抽离出去统一管理，提升性能2.使得跨段应用得以实现，react native">
+<meta property="og:type" content="article">
+<meta property="og:title" content="虚拟dom">
+<meta property="og:url" content="https://glayin.github.io/2022/02/15/%E8%99%9A%E6%8B%9Fdom/index.html">
 <meta property="og:site_name" content="Lux&#39;s blog">
+<meta property="og:description" content="优点：1.可以把业务数据抽离出去统一管理，提升性能2.使得跨段应用得以实现，react native">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2f79540f255d45ac8e506dce92d7678f.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBATHV4IExpbg==,size_20,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/63a0c38b6df14e0db98097b83ca3b4fe.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBATHV4IExpbg==,size_20,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/dc449164b10b4d2aa6e2be1eb11ea238.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBATHV4IExpbg==,size_20,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/7cbcad3184424e10af9f6781e357df26.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBATHV4IExpbg==,size_20,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/81d2cc2a4510455dbb6131fcb369d5c4.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBATHV4IExpbg==,size_20,color_FFFFFF,t_70,g_se,x_16">
+<meta property="article:published_time" content="2022-02-15T03:29:52.594Z">
+<meta property="article:modified_time" content="2022-02-15T03:32:57.174Z">
 <meta property="article:author" content="Lux Lin">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/2f79540f255d45ac8e506dce92d7678f.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBATHV4IExpbg==,size_20,color_FFFFFF,t_70,g_se,x_16">
 
 
-<link rel="canonical" href="https://glayin.github.io/archives/2021/03/">
+<link rel="canonical" href="https://glayin.github.io/2022/02/15/%E8%99%9A%E6%8B%9Fdom/">
 
 
 <script class="page-configurations">
@@ -40,11 +50,11 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'en'
   };
 </script>
-<title>Archive | Lux's blog</title>
+<title>虚拟dom | Lux's blog</title>
   
 
 
@@ -193,109 +203,89 @@
 </noscript>
 
 
-    <div class="main-inner archive posts-collapse">
+    <div class="main-inner post posts-expand">
 
 
   
-  
-  
-  <div class="post-block">
-    <div class="post-content">
-      <div class="collection-title">
-        <span class="collection-header">Um..! 17 posts in total. Keep on posting.</span>
-      </div>
 
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://glayin.github.io/2022/02/15/%E8%99%9A%E6%8B%9Fdom/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Lux Lin">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lux's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          虚拟dom
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
       
-    <div class="collection-year">
-      <span class="collection-header">2021</span>
+
+      <time title="Created: 2022-02-15 11:29:52 / Modified: 11:32:57" itemprop="dateCreated datePublished" datetime="2022-02-15T11:29:52+08:00">2022-02-15</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p><img src="https://img-blog.csdnimg.cn/2f79540f255d45ac8e506dce92d7678f.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBATHV4IExpbg==,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"></p>
+<p><img src="https://img-blog.csdnimg.cn/63a0c38b6df14e0db98097b83ca3b4fe.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBATHV4IExpbg==,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/dc449164b10b4d2aa6e2be1eb11ea238.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBATHV4IExpbg==,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/7cbcad3184424e10af9f6781e357df26.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBATHV4IExpbg==,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/81d2cc2a4510455dbb6131fcb369d5c4.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBATHV4IExpbg==,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"></p>
+<p>优点：1.可以把业务数据抽离出去统一管理，提升性能<br>2.使得跨段应用得以实现，react native</p>
+
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2021-03-30T02:35:22+08:00"
-              content="2021-03-30">
-          03-30
-        </time>
-      </div>
+    
+    
+    
 
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/03/30/%E5%88%9D%E6%AD%A5%E6%8E%A5%E8%A7%A6JavaScript%E5%BC%82%E6%AD%A5%20Promise%EF%BC%88%20async%20await%EF%BC%89callback%EF%BC%88%E5%9B%9E%E8%B0%83%EF%BC%89/" itemprop="url">
-            <span itemprop="name">初步接触JavaScript异步</span>
-          </a>
-      </div>
+    <footer class="post-footer">
 
-      
-    </header>
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/01/30/React%20propTypes%E6%A0%A1%E9%AA%8C%E7%BB%84%E4%BB%B6%E5%8F%82%E6%95%B0%E7%B1%BB%E5%9E%8B/" rel="prev" title="PropsTypes校验组件参数类型">
+                  <i class="fa fa-chevron-left"></i> PropsTypes校验组件参数类型
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/02/28/redux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%20%E6%97%A0%E7%8A%B6%E6%80%81%E7%BB%84%E4%BB%B6%E4%B8%8E%E6%9C%89%E7%8A%B6%E6%80%81%E7%BB%84%E4%BB%B6/" rel="next" title="react有状态组件与无状态组件">
+                  react有状态组件与无状态组件 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
   </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2021-03-21T11:55:22+08:00"
-              content="2021-03-21">
-          03-21
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/03/21/miniprogram_learning_components/" itemprop="url">
-            <span itemprop="name">miniprogram components</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2021-03-21T11:53:16+08:00"
-              content="2021-03-21">
-          03-21
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/03/21/miniprogram2/" itemprop="url">
-            <span itemprop="name">Untitled</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2021-03-19T16:01:21+08:00"
-              content="2021-03-19">
-          03-19
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/03/19/first/" itemprop="url">
-            <span itemprop="name">first page</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
+</div>
 
 
-    </div>
-  </div>
-  
-  
-  
+
+
+
 
 
 <script>

@@ -164,7 +164,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">16</span>
+          <span class="site-state-item-count">17</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -194,6 +194,75 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://glayin.github.io/2022/02/28/redux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%20%E6%97%A0%E7%8A%B6%E6%80%81%E7%BB%84%E4%BB%B6%E4%B8%8E%E6%9C%89%E7%8A%B6%E6%80%81%E7%BB%84%E4%BB%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Lux Lin">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lux's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/02/28/redux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%20%E6%97%A0%E7%8A%B6%E6%80%81%E7%BB%84%E4%BB%B6%E4%B8%8E%E6%9C%89%E7%8A%B6%E6%80%81%E7%BB%84%E4%BB%B6/" class="post-title-link" itemprop="url">react有状态组件与无状态组件</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2022-02-28 20:25:10 / Modified: 20:30:55" itemprop="dateCreated datePublished" datetime="2022-02-28T20:25:10+08:00">2022-02-28</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="1-什么是无状态组件？"><a href="#1-什么是无状态组件？" class="headerlink" title="1.什么是无状态组件？"></a>1.什么是无状态组件？</h2><p>只有一个render函数的组件，就可以写成无状态组件，<br>一个函数没有props，没有生命周期， 就是一个简单的视图函数，没有业务逻辑更纯粹的展示UI。<br>例子：例子如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123;Component&#125; <span class="keyword">from</span> <span class="string">&quot;react&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123;connect&#125; <span class="keyword">from</span> <span class="string">&quot;react-redux&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123;getChangeInputAction, getBtnClickAction, getHandleDeleteAction&#125; <span class="keyword">from</span> <span class="string">&quot;./store/actionCreators&quot;</span>;</span><br><span class="line"><span class="comment">//只有一个render方法可以写成无状态组件，能用最好用</span></span><br><span class="line"><span class="keyword">const</span> TodoList = <span class="function">(<span class="params">props</span>) =&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">const</span> &#123;inputValue,list, changeInputValue, handleBtnClick, handleDelete&#125; = props</span><br><span class="line">    <span class="comment">//优化精简</span></span><br><span class="line">    <span class="keyword">return</span>(</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">            &lt;div&gt;</span><br><span class="line">                &lt;input value=&#123;inputValue&#125; onChange=&#123;changeInputValue&#125;/&gt;</span><br><span class="line">                &lt;button onClick=&#123;handleBtnClick&#125;&gt;tijiao&lt;/button&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line"></span><br><span class="line">            &lt;ul&gt;</span><br><span class="line">                &#123;list.map(<span class="function">(<span class="params">item,index</span>) =&gt;</span> &#123;</span><br><span class="line">                    <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">li</span> <span class="attr">onClick</span>=<span class="string">&#123;()</span>=&gt;</span>&#123;handleDelete(index)&#125;&#125; key = &#123;index&#125; &gt;&#123;item&#125;<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br><span class="line">                &#125;)&#125;</span><br><span class="line">            &lt;/ul&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    )</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> mapStateToProps = <span class="function">(<span class="params">state</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        inputValue: state.inputValue,</span><br><span class="line">        list: state.list</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> mapDispatchToProps = <span class="function">(<span class="params">dispatch</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span>&#123;</span><br><span class="line">        <span class="function"><span class="title">changeInputValue</span>(<span class="params">e</span>)</span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(e.target.value)</span><br><span class="line">            <span class="keyword">const</span> action = getChangeInputAction(e.target.value)</span><br><span class="line">            dispatch(action)</span><br><span class="line">        <span class="comment">//action被dispatch只是dispatch到store，store把action转发给reducer</span></span><br><span class="line">        &#125;,</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="title">handleBtnClick</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            <span class="keyword">const</span> action = getBtnClickAction()</span><br><span class="line">            dispatch(action)</span><br><span class="line">        &#125;,</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="title">handleDelete</span>(<span class="params">index</span>)</span>&#123;</span><br><span class="line">            <span class="keyword">const</span> action = getHandleDeleteAction(index)</span><br><span class="line">            dispatch(action)</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> connect(mapStateToProps, mapDispatchToProps)(TodoList);</span><br></pre></td></tr></table></figure>
+<h2 id="2-有状态组件"><a href="#2-有状态组件" class="headerlink" title="2.有状态组件"></a>2.有状态组件</h2><p>有状态组件主要用来定义交互逻辑和业务数据（如果用了Redux，可以把业务数据抽离出去统一管理），使用{this.state.xxx}的表达式把业务数据挂载到容器组件的实例上（有状态组件也可以叫做容器组件，无状态组件也可以叫做展示组件），然后传递props到展示组件，展示组件接收到props，把props塞到模板里面。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123;Component, PureComponent&#125; <span class="keyword">from</span> <span class="string">&quot;react&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123;RecommendBoard, RecommendItem&#125; <span class="keyword">from</span> <span class="string">&#x27;../style&#x27;</span></span><br><span class="line"><span class="keyword">import</span> &#123;connect&#125; <span class="keyword">from</span> <span class="string">&quot;react-redux&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123;SearchInfoItem&#125; <span class="keyword">from</span> <span class="string">&quot;../../../common/header/style&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Recommend</span> <span class="keyword">extends</span> <span class="title">PureComponent</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="title">render</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">        <span class="keyword">const</span> &#123;list, page&#125; = <span class="built_in">this</span>.props</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span>(</span><br><span class="line"></span><br><span class="line">            &lt;RecommendBoard&gt;</span><br><span class="line">                &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                    list.map(<span class="function">(<span class="params">item</span>) =&gt;</span> &#123;</span><br><span class="line">                        <span class="keyword">return</span>(</span><br><span class="line">                    &lt;RecommendItem key = &#123;item.get(<span class="string">&#x27;id&#x27;</span>) &#125;  href =&#123;item.get(<span class="string">&#x27;href&#x27;</span>)&#125;&gt;</span><br><span class="line">                    &lt;img alt=<span class="string">&#x27;&#x27;</span>   className=<span class="string">&#x27;pic&#x27;</span> src=&#123;item.get(<span class="string">&#x27;imgUrl&#x27;</span>)&#125; &gt;&lt;/img&gt;</span><br><span class="line">                    &lt;/RecommendItem&gt;</span><br><span class="line">                    )</span><br><span class="line">                &#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">            &lt;/RecommendBoard&gt;</span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> mapState = <span class="function">(<span class="params">state</span>) =&gt;</span> (&#123;</span><br><span class="line">    list : state.getIn([<span class="string">&#x27;home&#x27;</span>,<span class="string">&#x27;recommendList&#x27;</span>])</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> connect(mapState)(Recommend);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -908,80 +977,6 @@
 
 <h2 id="2-数据库相关问题"><a href="#2-数据库相关问题" class="headerlink" title="2. 数据库相关问题"></a>2. 数据库相关问题</h2><p>我的理解是需要按照数据库配置信息自己建库，我下载的那份源码里是没有sql文件的，需要自己来写建库的那些基本命令，还没学过数据库的同学可以查一查。<br>数据库建好后才可以顺利把模型映射到数据库中。</p>
 <h2 id="3-前端渲染效果没出来（黑白）"><a href="#3-前端渲染效果没出来（黑白）" class="headerlink" title="3.前端渲染效果没出来（黑白）"></a>3.前端渲染效果没出来（黑白）</h2><p>这个问题是jQuery Bootstrap方面的，成功下载，并在页面head标签里引入即可</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://glayin.github.io/2021/04/12/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%BB%84%E4%BB%B6%E5%BC%95%E5%85%A5%E5%A4%96%E9%83%A8%E6%A0%B7%E5%BC%8F%E7%B1%BBexternalClasses/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Lux Lin">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Lux's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/04/12/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%BB%84%E4%BB%B6%E5%BC%95%E5%85%A5%E5%A4%96%E9%83%A8%E6%A0%B7%E5%BC%8F%E7%B1%BBexternalClasses/" class="post-title-link" itemprop="url">微信小程序引入外部样式类externalClasses</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 2021-04-12 19:28:42 / Modified: 19:30:25" itemprop="dateCreated datePublished" datetime="2021-04-12T19:28:42+08:00">2021-04-12</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="引入外部样式场景类的场景"><a href="#引入外部样式场景类的场景" class="headerlink" title="引入外部样式场景类的场景"></a>引入外部样式场景类的场景</h2><p>通常，我们会遇到引入第三方UI库的基础icon样式与设计稿有区别，颜色，边框等等，此时就可以通过引入外部样式类解决。<br>或者有时自定义组件在页面里设置class后样式失效，也要通过外部样式类解决</p>
-<h2 id="引入外部样式类的步骤"><a href="#引入外部样式类的步骤" class="headerlink" title="引入外部样式类的步骤"></a>引入外部样式类的步骤</h2><h2 id="1-在组件的js文件里Component下添加externalClasses属性并赋值"><a href="#1-在组件的js文件里Component下添加externalClasses属性并赋值" class="headerlink" title="1.在组件的js文件里Component下添加externalClasses属性并赋值"></a>1.在组件的js文件里Component下添加<code>externalClasses</code>属性并赋值</h2><p>，即自己要给的类名。外部样式类 ‘f-class’按图示写法等同于在wxml标签添加class = “.f-class”在wxss文件配置.f-class{}</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Component(&#123;</span><br><span class="line">  &#x2F;**</span><br><span class="line">   * 组件的属性列表</span><br><span class="line">   *&#x2F;</span><br><span class="line">  externalClasses:[&#39;f-class&#39;],</span><br><span class="line">  properties: &#123;</span><br><span class="line">  </span><br><span class="line">  &#125;,</span><br><span class="line"> </span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<h2 id="2-把这个外部样式类添加到组件的最外层"><a href="#2-把这个外部样式类添加到组件的最外层" class="headerlink" title="2. 把这个外部样式类添加到组件的最外层"></a>2. 把这个外部样式类添加到组件的最外层</h2><p><img src="https://img-blog.csdnimg.cn/20210407152422568.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NjcyODA2OA==,size_16,color_FFFFFF,t_70" alt="***很关键，很多人会忽略掉这里没有设置这一步相当于没办法把外部样式类传入***"></p>
-<h2 id="3-在页面使用这个组件时绑定这个外部样式类"><a href="#3-在页面使用这个组件时绑定这个外部样式类" class="headerlink" title="3.在页面使用这个组件时绑定这个外部样式类"></a>3.在页面使用这个组件时绑定这个外部样式类</h2><p>注意在json文件绑定组件后wxml中写类时不再是class，而是刚才的f-class</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;movie-list f-class&#x3D;&quot;movie-list&quot; &#x2F;&gt;</span><br><span class="line">&lt;movie-list f-class&#x3D;&quot;movie-list&quot; &#x2F;&gt;</span><br><span class="line">&lt;movie-list f-class&#x3D;&quot;movie-list&quot; &#x2F;&gt;</span><br></pre></td></tr></table></figure>
-<p>接下来在页面的wxss样式文件中编辑movie-list的样式即可，这也是为什么叫做外部样式类的原因</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.movie-list&#123;</span><br><span class="line">  margin-bottom: 30rpx;</span><br><span class="line">  background-color: teal !important;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>另外： !important作用是提高样式优先级，把这一条要设置的样式不被其他覆盖，正常来说是离元素近的样式优先，这里出了问题，没有把 f-class 优先。</p>
 
       
     </div>

@@ -164,7 +164,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">16</span>
+          <span class="site-state-item-count">17</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -194,6 +194,80 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://glayin.github.io/2021/04/12/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%BB%84%E4%BB%B6%E5%BC%95%E5%85%A5%E5%A4%96%E9%83%A8%E6%A0%B7%E5%BC%8F%E7%B1%BBexternalClasses/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Lux Lin">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lux's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/04/12/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%BB%84%E4%BB%B6%E5%BC%95%E5%85%A5%E5%A4%96%E9%83%A8%E6%A0%B7%E5%BC%8F%E7%B1%BBexternalClasses/" class="post-title-link" itemprop="url">微信小程序引入外部样式类externalClasses</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2021-04-12 19:28:42 / Modified: 19:30:25" itemprop="dateCreated datePublished" datetime="2021-04-12T19:28:42+08:00">2021-04-12</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="引入外部样式场景类的场景"><a href="#引入外部样式场景类的场景" class="headerlink" title="引入外部样式场景类的场景"></a>引入外部样式场景类的场景</h2><p>通常，我们会遇到引入第三方UI库的基础icon样式与设计稿有区别，颜色，边框等等，此时就可以通过引入外部样式类解决。<br>或者有时自定义组件在页面里设置class后样式失效，也要通过外部样式类解决</p>
+<h2 id="引入外部样式类的步骤"><a href="#引入外部样式类的步骤" class="headerlink" title="引入外部样式类的步骤"></a>引入外部样式类的步骤</h2><h2 id="1-在组件的js文件里Component下添加externalClasses属性并赋值"><a href="#1-在组件的js文件里Component下添加externalClasses属性并赋值" class="headerlink" title="1.在组件的js文件里Component下添加externalClasses属性并赋值"></a>1.在组件的js文件里Component下添加<code>externalClasses</code>属性并赋值</h2><p>，即自己要给的类名。外部样式类 ‘f-class’按图示写法等同于在wxml标签添加class = “.f-class”在wxss文件配置.f-class{}</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Component(&#123;</span><br><span class="line">  &#x2F;**</span><br><span class="line">   * 组件的属性列表</span><br><span class="line">   *&#x2F;</span><br><span class="line">  externalClasses:[&#39;f-class&#39;],</span><br><span class="line">  properties: &#123;</span><br><span class="line">  </span><br><span class="line">  &#125;,</span><br><span class="line"> </span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-把这个外部样式类添加到组件的最外层"><a href="#2-把这个外部样式类添加到组件的最外层" class="headerlink" title="2. 把这个外部样式类添加到组件的最外层"></a>2. 把这个外部样式类添加到组件的最外层</h2><p><img src="https://img-blog.csdnimg.cn/20210407152422568.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NjcyODA2OA==,size_16,color_FFFFFF,t_70" alt="***很关键，很多人会忽略掉这里没有设置这一步相当于没办法把外部样式类传入***"></p>
+<h2 id="3-在页面使用这个组件时绑定这个外部样式类"><a href="#3-在页面使用这个组件时绑定这个外部样式类" class="headerlink" title="3.在页面使用这个组件时绑定这个外部样式类"></a>3.在页面使用这个组件时绑定这个外部样式类</h2><p>注意在json文件绑定组件后wxml中写类时不再是class，而是刚才的f-class</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;movie-list f-class&#x3D;&quot;movie-list&quot; &#x2F;&gt;</span><br><span class="line">&lt;movie-list f-class&#x3D;&quot;movie-list&quot; &#x2F;&gt;</span><br><span class="line">&lt;movie-list f-class&#x3D;&quot;movie-list&quot; &#x2F;&gt;</span><br></pre></td></tr></table></figure>
+<p>接下来在页面的wxss样式文件中编辑movie-list的样式即可，这也是为什么叫做外部样式类的原因</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.movie-list&#123;</span><br><span class="line">  margin-bottom: 30rpx;</span><br><span class="line">  background-color: teal !important;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>另外： !important作用是提高样式优先级，把这一条要设置的样式不被其他覆盖，正常来说是离元素近的样式优先，这里出了问题，没有把 f-class 优先。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
